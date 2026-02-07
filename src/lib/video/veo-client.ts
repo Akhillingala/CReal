@@ -1,7 +1,7 @@
 /**
  * CReal - Veo video generation client (REST)
  * Generates short (<15s) clips via Google Veo 3.1 using the Gemini API.
- * Uses 6-second duration for a quick, focused summary clip.
+ * Uses 8-second duration for an infographic/news-cartoon style explainer.
  */
 
 const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta';
@@ -32,7 +32,7 @@ async function startGeneration(
   const body = {
     instances: [{ prompt }],
     parameters: {
-      durationSeconds: '6',
+      durationSeconds: 8,
       aspectRatio: '16:9',
       resolution: '720p',
     },
@@ -85,16 +85,60 @@ async function pollOperation(
 }
 
 /**
- * Extract video URI from operation response and download video bytes.
- * Response path from docs: response.generateVideoResponse.generatedSamples[0].video.uri
+ * Extract video URI from operation response. Tries multiple response shapes
+ * (Gemini REST: response.generateVideoResponse.generatedSamples[0].video.uri,
+ *  plus camelCase/snake_case and SDK-style variants.)
  */
 function getVideoUri(response: Record<string, unknown>): string | null {
-  const gen = response?.generateVideoResponse as Record<string, unknown> | undefined;
-  const samples = gen?.generatedSamples as unknown[] | undefined;
-  const first = samples?.[0] as Record<string, unknown> | undefined;
-  const video = first?.video as Record<string, unknown> | undefined;
-  const uri = video?.uri;
-  return typeof uri === 'string' ? uri : null;
+  if (!response || typeof response !== 'object') return null;
+
+  // Path 1: generateVideoResponse.generatedSamples[0].video.uri (Gemini REST, camelCase)
+  const gen = response.generateVideoResponse as Record<string, unknown> | undefined;
+  if (gen && typeof gen === 'object') {
+    const samples =
+      (gen.generatedSamples as unknown[] | undefined) ??
+      (gen.generated_samples as unknown[] | undefined);
+    const firstSample = samples?.[0] as Record<string, unknown> | undefined;
+    if (firstSample && typeof firstSample === 'object') {
+      const video =
+        (firstSample.video as Record<string, unknown> | undefined) ?? firstSample;
+      const uri =
+        (typeof video?.uri === 'string' ? video.uri : null) ??
+        (typeof (video as Record<string, unknown>)?.uri === 'string'
+          ? (video as Record<string, unknown>).uri
+          : null);
+      if (typeof uri === 'string') return uri;
+    }
+  }
+
+  // Path 2: generatedVideos[0].video.uri (SDK-style)
+  const generatedVideos = response.generatedVideos as unknown[] | undefined;
+  const firstGen = generatedVideos?.[0] as Record<string, unknown> | undefined;
+  const videoFromGen = firstGen?.video as Record<string, unknown> | undefined;
+  const uri2 = videoFromGen?.uri;
+  if (typeof uri2 === 'string') return uri2;
+
+  // Path 3: videos[0].gcsUri or videos[0].uri (Vertex REST-style)
+  const videos = response.videos as unknown[] | undefined;
+  const firstVideo = videos?.[0] as Record<string, unknown> | undefined;
+  const gcsUri = firstVideo?.gcsUri ?? firstVideo?.uri;
+  if (typeof gcsUri === 'string') return gcsUri;
+
+  // Path 4: Deep search inside generateVideoResponse for any array of items with .video.uri
+  if (gen && typeof gen === 'object') {
+    for (const key of Object.keys(gen)) {
+      const arr = gen[key] as unknown[] | undefined;
+      if (Array.isArray(arr) && arr.length > 0) {
+        const first = arr[0] as Record<string, unknown> | undefined;
+        const video = first?.video as Record<string, unknown> | undefined;
+        const u = video?.uri ?? first?.uri;
+        if (typeof u === 'string' && (u.startsWith('http') || u.startsWith('gs://')))
+          return u;
+      }
+    }
+  }
+
+  return null;
 }
 
 /**
@@ -120,7 +164,7 @@ async function downloadVideo(apiKey: string, uri: string): Promise<{ base64: str
 }
 
 /**
- * Generate a short (6 second) video from a text prompt. Returns base64-encoded video.
+ * Generate an 8-second infographic-style video from a text prompt. Returns base64-encoded video.
  */
 export async function generateVideo(
   apiKey: string,
@@ -130,7 +174,14 @@ export async function generateVideo(
   const response = await pollOperation(apiKey, operationName);
   const uri = getVideoUri(response);
   if (!uri) {
-    throw new Error('Veo response missing video URI');
+    const keys = response && typeof response === 'object' ? Object.keys(response).join(', ') : 'empty';
+    throw new Error(`Veo response missing video URI. Response keys: ${keys || '(none)'}`);
+  }
+  // gs:// URIs require GCS auth; only https is supported for direct fetch
+  if (uri.startsWith('gs://')) {
+    throw new Error(
+      'Veo returned a Cloud Storage URI (gs://). This extension only supports direct download URLs. Try using Google AI Studio / Gemini API with a key that returns https URLs, or use Vertex AI with a GCS bucket and download the file separately.'
+    );
   }
   const { base64, mimeType } = await downloadVideo(apiKey, uri);
   return { videoBase64: base64, mimeType };

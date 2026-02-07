@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { extractArticle } from '../lib/utils/article-parser';
+import { extractArticle, type ExtractedArticle } from '../lib/utils/article-parser';
 
 interface BiasResult {
   left_right: number;
@@ -32,7 +32,7 @@ type VideoState = 'idle' | 'generating' | 'success' | 'error';
 export function Overlay2D() {
   const [viewMode, setViewMode] = useState<ViewMode>('minimized');
   const [analysis, setAnalysis] = useState<AnalysisState>({ status: 'idle' });
-  const [article, setArticle] = useState<{ title: string; url: string } | null>(null);
+  const [article, setArticle] = useState<Pick<ExtractedArticle, 'title' | 'url' | 'author' | 'authorImageUrl' | 'source'> | null>(null);
   const [videoState, setVideoState] = useState<VideoState>('idle');
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [videoError, setVideoError] = useState<string | null>(null);
@@ -48,7 +48,13 @@ export function Overlay2D() {
       return;
     }
 
-    setArticle({ title: extracted.title, url: extracted.url });
+    setArticle({
+      title: extracted.title,
+      url: extracted.url,
+      author: extracted.author,
+      authorImageUrl: extracted.authorImageUrl,
+      source: extracted.source,
+    });
     setAnalysis({ status: 'loading' });
 
     try {
@@ -80,7 +86,13 @@ export function Overlay2D() {
   useEffect(() => {
     const extracted = extractArticle();
     if (extracted) {
-      setArticle({ title: extracted.title, url: extracted.url });
+      setArticle({
+        title: extracted.title,
+        url: extracted.url,
+        author: extracted.author,
+        authorImageUrl: extracted.authorImageUrl,
+        source: extracted.source,
+      });
     }
   }, []);
 
@@ -180,35 +192,79 @@ export function Overlay2D() {
             className="fixed left-[12.5vw] top-[12.5vh] z-[2147483647] flex w-[75vw] h-[75vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl"
           >
             {/* Header */}
-            <div className="flex shrink-0 items-center justify-between border-b border-white/20 px-6 py-4 bg-white/[0.03]">
+            <div className="flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]">
               <span className="text-xl font-bold tracking-tight text-creal-accent">CReal</span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => runAnalysis()}
-                  className="rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25 transition-colors"
+                  className="creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
                 >
                   Re-analyze
                 </button>
                 <button
                   onClick={() => setViewMode('minimized')}
-                  className="rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25 transition-colors"
+                  className="creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
                 >
                   Close
                 </button>
               </div>
             </div>
 
+            {/* Article context: AI badge, author, source — only when success */}
+            {analysis.status === 'success' && article && (
+              <div className="shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-creal-accent/20 px-2.5 py-1 text-xs font-medium text-creal-accent border border-creal-accent/40">
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  Insights powered by AI
+                </span>
+                {(article.author || article.authorImageUrl) && (
+                  <div className="flex items-center gap-2 min-w-0">
+                    {article.authorImageUrl ? (
+                      <img
+                        src={article.authorImageUrl}
+                        alt=""
+                        className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
+                      />
+                    ) : article.author ? (
+                      <img
+                        src={`https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`}
+                        alt=""
+                        className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
+                      />
+                    ) : (
+                      <div className="h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20">
+                        <span className="text-white/60 text-xs font-medium">?</span>
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      {article.author && (
+                        <p className="text-xs font-medium text-white/90 truncate">{article.author}</p>
+                      )}
+                      {article.source && (
+                        <p className="text-[11px] text-white/50 truncate">{article.source}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+                {article.source && !article.author && !article.authorImageUrl && (
+                  <span className="text-[11px] text-white/50">{article.source}</span>
+                )}
+              </div>
+            )}
+
             {/* Content area: left list scrolls, radar fixed top-right */}
-            <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-4 md:p-5">
+            <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
               {analysis.status === 'idle' && (
-                <div className="flex h-full min-h-[300px] flex-col items-center justify-center text-center">
-                  <p className="mb-6 text-lg text-white/90">
+                <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center">
+                  <p className="mb-4 text-base text-white/90">
                     {article ? 'Click below to analyze this article' : 'No article detected on this page.'}
                   </p>
                   <button
                     onClick={runAnalysis}
                     disabled={!article}
-                    className="rounded-xl bg-cyan-600 px-10 py-4 text-lg font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 transition-colors shadow-lg"
+                    className="creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg"
                   >
                     Analyze article
                   </button>
@@ -216,24 +272,24 @@ export function Overlay2D() {
               )}
 
               {analysis.status === 'loading' && (
-                <div className="flex flex-col items-center justify-center gap-6 py-16">
-                  <div className="h-14 w-14 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" />
-                  <p className="text-lg text-white/80">Analyzing article...</p>
-                  <div className="grid w-full max-w-md grid-cols-3 gap-4">
+                <div className="flex flex-col items-center justify-center gap-4 py-10">
+                  <div className="h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" />
+                  <p className="text-base text-white/80">Analyzing article...</p>
+                  <div className="grid w-full max-w-sm grid-cols-3 gap-2">
                     {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <div key={i} className="h-24 rounded-xl bg-white/10 animate-pulse" />
+                      <div key={i} className="h-16 rounded-lg bg-white/10 animate-pulse" />
                     ))}
                   </div>
                 </div>
               )}
 
               {analysis.status === 'error' && (
-                <div className="rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-6 max-w-lg">
-                  <p className="text-lg font-medium text-creal-danger">{analysis.error}</p>
-                  <p className="mt-2 text-sm text-white/70">Add your Gemini API key in the extension popup.</p>
+                <div className="rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg">
+                  <p className="text-base font-medium text-creal-danger">{analysis.error}</p>
+                  <p className="mt-1.5 text-xs text-white/70">Add your Gemini API key in the extension popup.</p>
                   <button
                     onClick={runAnalysis}
-                    className="mt-4 rounded-lg bg-white/25 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/35 transition-colors"
+                    className="creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35"
                   >
                     Retry
                   </button>
@@ -247,34 +303,34 @@ export function Overlay2D() {
 
             {/* Video section: player when success, or inline error */}
             {videoState === 'success' && videoUrl && (
-              <div className="shrink-0 border-t border-white/20 px-6 py-4 bg-white/[0.03]">
-                <p className="text-xs font-medium uppercase tracking-wider text-white/50 mb-2">
+              <div className="shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]">
+                <p className="text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5">
                   Short clip (&lt;15s)
                 </p>
                 <video
                   src={videoUrl}
                   controls
-                  className="w-full max-h-48 rounded-lg border border-white/10 bg-black/50"
+                  className="w-full max-h-40 rounded-lg border border-white/10 bg-black/50"
                   preload="metadata"
                 />
                 <a
                   href={videoUrl}
                   download="creal-article-clip.mp4"
-                  className="mt-2 inline-block text-sm text-creal-accent hover:underline"
+                  className="mt-1.5 inline-block text-sm text-creal-accent hover:underline"
                 >
                   Download clip
                 </a>
               </div>
             )}
             {videoState === 'error' && videoError && (
-              <div className="shrink-0 border-t border-white/20 px-6 py-2 bg-creal-danger/10">
+              <div className="shrink-0 border-t border-white/20 px-4 py-2 bg-creal-danger/10">
                 <p className="text-sm text-creal-danger">{videoError}</p>
               </div>
             )}
 
             {/* Footer with Generate video */}
-            <div className="shrink-0 border-t border-white/20 px-6 py-4 flex items-center justify-between bg-white/[0.03]">
-              <p className="text-sm text-white/50">Article insights · CReal</p>
+            <div className="shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]">
+              <p className="text-xs text-white/50">Article insights · CReal</p>
               <button
                 type="button"
                 onClick={runGenerateVideo}
@@ -284,7 +340,7 @@ export function Overlay2D() {
                     ? 'Analyze the article first to generate a short clip'
                     : undefined
                 }
-                className="rounded-xl bg-white/25 px-6 py-3 text-sm font-semibold text-white hover:bg-white/35 transition-colors border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="creal-hover-btn rounded-xl bg-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/35 border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {videoState === 'generating'
                   ? 'Generating clip…'
@@ -333,10 +389,10 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
   });
 
   return (
-    <div className={`flex min-h-0 gap-4 ${className}`}>
+    <div className={`flex min-h-0 gap-3 ${className}`}>
       {/* Left: scrollable list of metric boxes */}
-      <div className="min-w-0 flex-1 overflow-y-auto pr-2">
-        <div className="space-y-2">
+      <div className="min-w-0 flex-1 overflow-y-auto pr-1">
+        <div className="space-y-1.5">
           {metrics.map((m, i) => {
             const isBipolar = m.range === 'bipolar';
             const displayVal = isBipolar ? (m.value > 0 ? '+' : '') + m.value : `${m.value}%`;
@@ -346,7 +402,7 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.03 }}
-                className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2.5"
+                className="creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-transform duration-200"
               >
                 <span className="text-sm text-white/85 truncate pr-2" title={m.label}>
                   {m.label}
@@ -358,10 +414,10 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
             );
           })}
         </div>
-        <p className="mt-4 text-xs font-medium uppercase tracking-wider text-white/50">
+        <p className="mt-3 text-xs font-medium uppercase tracking-wider text-white/50">
           Confidence {bias.confidence}%
         </p>
-        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+        <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
           <motion.div
             className="h-full rounded-full bg-creal-accent"
             initial={{ width: 0 }}
@@ -369,8 +425,8 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
             transition={{ duration: 0.5 }}
           />
         </div>
-        <section className="mt-5 rounded-lg border border-white/10 bg-white/[0.06] p-3">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/50">
+        <section className="mt-3 rounded-lg border border-white/10 bg-white/[0.06] p-2.5">
+          <h3 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-white/50">
             AI reasoning
           </h3>
           <p className="text-xs leading-relaxed text-white/75">{bias.reasoning}</p>
@@ -378,8 +434,8 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
       </div>
 
       {/* Top right: Insights overview radar */}
-      <section className="shrink-0 rounded-xl border border-white/10 bg-white/[0.06] p-4 self-start">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+      <section className="creal-metric-row shrink-0 rounded-xl border border-white/10 bg-white/[0.06] p-3 self-start transition-transform duration-200">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
           Insights overview
         </h2>
         <svg width="240" height="240" viewBox="0 0 350 350" className="overflow-visible">
