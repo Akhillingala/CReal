@@ -591,6 +591,9 @@ video {
 .inset-0 {
   inset: 0px;
 }
+.bottom-3 {
+  bottom: 0.75rem;
+}
 .bottom-6 {
   bottom: 1.5rem;
 }
@@ -602,6 +605,9 @@ video {
 }
 .right-1\\/2 {
   right: 50%;
+}
+.right-3 {
+  right: 0.75rem;
 }
 .right-6 {
   right: 1.5rem;
@@ -694,6 +700,9 @@ video {
 .h-12 {
   height: 3rem;
 }
+.h-14 {
+  height: 3.5rem;
+}
 .h-16 {
   height: 4rem;
 }
@@ -742,6 +751,9 @@ video {
 .w-12 {
   width: 3rem;
 }
+.w-14 {
+  width: 3.5rem;
+}
 .w-16 {
   width: 4rem;
 }
@@ -753,6 +765,9 @@ video {
 }
 .w-4 {
   width: 1rem;
+}
+.w-64 {
+  width: 16rem;
 }
 .w-8 {
   width: 2rem;
@@ -802,8 +817,16 @@ video {
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+.cursor-help {
+  cursor: help;
+}
 .cursor-pointer {
   cursor: pointer;
+}
+.select-text {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
 }
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -870,6 +893,9 @@ video {
 .overflow-visible {
   overflow: visible;
 }
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -877,6 +903,15 @@ video {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.break-words {
+  overflow-wrap: break-word;
 }
 .rounded-2xl {
   border-radius: 1rem;
@@ -908,6 +943,9 @@ video {
 .border-t {
   border-top-width: 1px;
 }
+.border-dotted {
+  border-style: dotted;
+}
 .border-creal-accent\\/30 {
   border-color: rgb(0 217 255 / 0.3);
 }
@@ -916,6 +954,9 @@ video {
 }
 .border-creal-danger\\/50 {
   border-color: rgb(255 0 85 / 0.5);
+}
+.border-green-500\\/30 {
+  border-color: rgb(34 197 94 / 0.3);
 }
 .border-white\\/10 {
   border-color: rgb(255 255 255 / 0.1);
@@ -952,6 +993,9 @@ video {
 .bg-black\\/80 {
   background-color: rgb(0 0 0 / 0.8);
 }
+.bg-black\\/90 {
+  background-color: rgb(0 0 0 / 0.9);
+}
 .bg-black\\/95 {
   background-color: rgb(0 0 0 / 0.95);
 }
@@ -972,6 +1016,9 @@ video {
 .bg-cyan-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(14 116 144 / var(--tw-bg-opacity, 1));
+}
+.bg-green-500\\/20 {
+  background-color: rgb(34 197 94 / 0.2);
 }
 .bg-red-600 {
   --tw-bg-opacity: 1;
@@ -1138,6 +1185,9 @@ video {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
 .pr-1 {
   padding-right: 0.25rem;
 }
@@ -1149,6 +1199,9 @@ video {
 }
 .font-sans {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.font-serif {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1239,6 +1292,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
+.text-green-400 {
+  --tw-text-opacity: 1;
+  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
+}
 .text-red-400 {
   --tw-text-opacity: 1;
   color: rgb(248 113 113 / var(--tw-text-opacity, 1));
@@ -1315,6 +1372,10 @@ video {
   --tw-backdrop-blur: blur(12px);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
+.backdrop-blur-md {
+  --tw-backdrop-blur: blur(12px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
 .backdrop-blur-sm {
   --tw-backdrop-blur: blur(4px);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1386,6 +1447,10 @@ video {
   border-color: rgb(0 217 255 / 0.5);
 }
 
+.hover\\:border-white\\/60:hover {
+  border-color: rgb(255 255 255 / 0.6);
+}
+
 .hover\\:bg-cyan-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(6 182 212 / var(--tw-bg-opacity, 1));
@@ -1437,6 +1502,10 @@ video {
 .hover\\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.hover\\:text-white\\/90:hover {
+  color: rgb(255 255 255 / 0.9);
 }
 
 .hover\\:underline:hover {
@@ -1504,7 +1573,7 @@ video {
     padding: 1rem;
   }
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/globals.css"],"names":[],"mappings":"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","sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');\n\n/* CReal overlay - isolated styling */\n.creal-overlay {\n  font-family: 'Inter', system-ui, sans-serif;\n  box-sizing: border-box;\n}\n.creal-overlay * {\n  box-sizing: border-box;\n}\n\n.creal-card {\n  font-family: 'Inter', system-ui, sans-serif;\n}\n\n.creal-btn-minimize {\n  font-family: 'Inter', system-ui, sans-serif;\n  cursor: pointer;\n  transition: transform 0.25s ease, box-shadow 0.25s ease;\n}\n.creal-btn-minimize:hover {\n  transform: scale(1.22);\n  box-shadow: 0 0 28px rgba(0, 217, 255, 0.45);\n}\n\n.creal-hover-btn {\n  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;\n}\n.creal-hover-btn:hover:not(:disabled) {\n  transform: scale(1.05);\n}\n\n.creal-metric-row:hover {\n  transform: scale(1.02);\n  background-color: rgba(255, 255, 255, 0.08);\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/globals.css"],"names":[],"mappings":"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","sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');\n\n/* CReal overlay - isolated styling */\n.creal-overlay {\n  font-family: 'Inter', system-ui, sans-serif;\n  box-sizing: border-box;\n}\n.creal-overlay * {\n  box-sizing: border-box;\n}\n\n.creal-card {\n  font-family: 'Inter', system-ui, sans-serif;\n}\n\n.creal-btn-minimize {\n  font-family: 'Inter', system-ui, sans-serif;\n  cursor: pointer;\n  transition: transform 0.25s ease, box-shadow 0.25s ease;\n}\n.creal-btn-minimize:hover {\n  transform: scale(1.22);\n  box-shadow: 0 0 28px rgba(0, 217, 255, 0.45);\n}\n\n.creal-hover-btn {\n  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;\n}\n.creal-hover-btn:hover:not(:disabled) {\n  transform: scale(1.05);\n}\n\n.creal-metric-row:hover {\n  transform: scale(1.02);\n  background-color: rgba(255, 255, 255, 0.08);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36792,6 +36861,93 @@ function AuthorProfile({ authorName, authorImageUrl, onClose }) {
 
 /***/ },
 
+/***/ "./src/content/CitationsView.tsx"
+/*!***************************************!*\
+  !*** ./src/content/CitationsView.tsx ***!
+  \***************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CitationsView: () => (/* binding */ CitationsView)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs");
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs");
+
+
+
+function CitationsView({ article }) {
+    const [format, setFormat] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('APA');
+    const [copied, setCopied] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const citation = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+        return generateCitation(article, format);
+    }, [article, format]);
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(citation);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+        catch (err) {
+            console.error('Failed to copy citation:', err);
+        }
+    };
+    const formats = ['APA', 'MLA', 'Chicago', 'Harvard', 'IEEE'];
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full flex-col", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "mb-4 flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10", children: formats.map((fmt) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setFormat(fmt), className: `whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${format === fmt
+                        ? 'bg-creal-accent text-black'
+                        : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white/90'}`, children: fmt }, fmt))) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "relative flex-1 rounded-xl border border-white/10 bg-white/[0.03] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { mode: "wait", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, y: 5 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -5 }, transition: { duration: 0.15 }, className: "font-serif text-sm leading-relaxed text-white/90 select-text break-words whitespace-pre-wrap", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { dangerouslySetInnerHTML: { __html: citation } }) }, format) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "absolute bottom-3 right-3", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: handleCopy, className: `flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all ${copied
+                                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                                : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'}`, children: copied ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2.5, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M5 13l4 4L19 7" }) }), "Copied!"] })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" }) }), "Copy text"] })) }) })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-3 text-[10px] text-white/40", children: "*Citations are generated automatically based on available page metadata. Verify accuracy before use." })] }));
+}
+function generateCitation(article, format) {
+    const { title, url, author, date, source, publisher } = article;
+    // Helpers
+    const today = new Date();
+    const accessDate = `${today.getDate()} ${today.toLocaleString('default', { month: 'short' })}. ${today.getFullYear()}`;
+    const pubDateObj = date ? new Date(date) : null;
+    const pubYear = pubDateObj ? pubDateObj.getFullYear() : 'n.d.';
+    const pubDateFull = pubDateObj
+        ? `${pubDateObj.getDate()} ${pubDateObj.toLocaleString('default', { month: 'long' })} ${pubDateObj.getFullYear()}`
+        : 'n.d.';
+    const authorParts = author ? author.split(' ') : [];
+    const lastName = authorParts.length > 1 ? authorParts.pop() : author;
+    const firstName = authorParts.join(' ');
+    const authorFormatted = lastName && firstName
+        ? `${lastName}, ${firstName[0]}.`
+        : article.author || 'Anonymous'; // Default fallback
+    const siteName = publisher || source || new URL(url).hostname;
+    switch (format) {
+        case 'APA':
+            // Author, A. A. (Year, Month Day). Title of article. Site Name. URL
+            return `${authorFormatted} (${pubYear}${pubDateObj ? ', ' + pubDateObj.toLocaleString('default', { month: 'long' }) + ' ' + pubDateObj.getDate() : ''}). <i>${title}</i>. ${siteName}. ${url}`;
+        case 'MLA':
+            // Author Last, First. "Title of Article." Website Name, Day Month Year, URL. Accessed Day Month Year.
+            // Note: MLA 9 omits http://
+            const cleanUrl = url.replace(/^https?:\/\//, '');
+            return `${lastName && firstName ? `${lastName}, ${firstName}` : (article.author || 'Anonymous')}. "${title}." <i>${siteName}</i>, ${pubDateFull !== 'n.d.' ? pubDateFull : 'n.d.'}, ${cleanUrl}. Accessed ${today.getDate()} ${today.toLocaleString('default', { month: 'short' })}. ${today.getFullYear()}.`;
+        case 'Chicago':
+            // Last, First. "Title of Article." Website Name. Month Day, Year. URL.
+            return `${lastName && firstName ? `${lastName}, ${firstName}` : (article.author || 'Anonymous')}. "${title}." ${siteName}. ${pubDateObj ? pubDateObj.toLocaleString('default', { month: 'long' }) + ' ' + pubDateObj.getDate() + ', ' + pubYear : 'n.d.'}. ${url}.`;
+        case 'Harvard':
+            // Last, Initial(s). (Year) 'Title of article', Site Name, Day Month (if available). Available at: URL (Accessed: Day Month Year).
+            return `${authorFormatted} (${pubYear}) '${title}', <i>${siteName}</i>${pubDateObj ? ', ' + pubDateObj.getDate() + ' ' + pubDateObj.toLocaleString('default', { month: 'long' }) : ''}. Available at: ${url} (Accessed: ${accessDate}).`;
+        case 'IEEE':
+            // [1] A. Author, "Title of article," Site Name, Month. Day, Year. [Online]. Available: URL. [Accessed: Month. Day, Year].
+            const ieeeAuthor = lastName && firstName ? `${firstName[0]}. ${lastName}` : (article.author || 'Anonymous');
+            const ieeeDate = pubDateObj ? `${pubDateObj.toLocaleString('default', { month: 'short' })}. ${pubDateObj.getDate()}, ${pubYear}` : 'n.d.';
+            const ieeeAccess = `${today.toLocaleString('default', { month: 'short' })}. ${today.getDate()}, ${today.getFullYear()}`;
+            return `[1] ${ieeeAuthor}, "${title}," <i>${siteName}</i>, ${ieeeDate}. [Online]. Available: ${url}. [Accessed: ${ieeeAccess}].`;
+        default:
+            return '';
+    }
+}
+
+
+/***/ },
+
 /***/ "./src/content/HistoryView.tsx"
 /*!*************************************!*\
   !*** ./src/content/HistoryView.tsx ***!
@@ -36916,11 +37072,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_utils_article_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/utils/article-parser */ "./src/lib/utils/article-parser.ts");
 /* harmony import */ var _HistoryView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HistoryView */ "./src/content/HistoryView.tsx");
 /* harmony import */ var _AuthorProfile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AuthorProfile */ "./src/content/AuthorProfile.tsx");
+/* harmony import */ var _CitationsView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CitationsView */ "./src/content/CitationsView.tsx");
 
 /**
  * CReal - Article insights overlay
  * 75% viewport transparent overlay with 3D-style metrics and radar chart
  */
+
 
 
 
@@ -37064,17 +37222,19 @@ function Overlay2D() {
                 URL.revokeObjectURL(videoUrl);
         };
     }, [videoUrl]);
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "creal-overlay fixed bottom-6 right-6 z-[2147483647] font-sans", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { mode: "wait", children: [viewMode === 'minimized' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.button, { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.8 }, onClick: openOverlay, className: "creal-btn-minimize flex h-20 w-20 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25", title: "CReal - Article insights", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "36", height: "36", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "12", cy: "12", r: "10" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M12 6v6l4 2" })] }) }, "minimized")), viewMode === 'expanded' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.2 }, className: "fixed left-[12.5vw] top-[12.5vh] z-[2147483647] flex w-[75vw] h-[75vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xl font-bold tracking-tight text-creal-accent", children: "CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex gap-1 rounded-lg bg-white/10 p-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('analysis'), className: `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'analysis'
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "creal-overlay fixed bottom-6 right-6 z-[2147483647] font-sans", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { mode: "wait", children: [viewMode === 'minimized' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.button, { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.8 }, onClick: openOverlay, className: "creal-btn-minimize flex h-14 w-14 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25", title: "CReal - Article insights", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "12", cy: "12", r: "10" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M12 6v6l4 2" })] }) }, "minimized")), viewMode === 'expanded' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.2 }, className: "fixed left-[12.5vw] top-[12.5vh] z-[2147483647] flex w-[75vw] h-[75vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xl font-bold tracking-tight text-creal-accent", children: "CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex gap-1 rounded-lg bg-white/10 p-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('analysis'), className: `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'analysis'
                                                                 ? 'bg-creal-accent text-black'
                                                                 : 'text-white/70 hover:text-white'}`, children: "Analysis" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('history'), className: `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'history'
                                                                 ? 'bg-creal-accent text-black'
-                                                                : 'text-white/70 hover:text-white'}`, children: "History" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2", children: [tabMode === 'analysis' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => runAnalysis(), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Re-analyze" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setViewMode('minimized'), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Close" })] })] }), analysis.status === 'success' && article && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-creal-accent/20 px-2.5 py-1 text-xs font-medium text-creal-accent border border-creal-accent/40", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" }) }), "Insights powered by AI"] }), (article.author || article.authorImageUrl) && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", { onClick: (e) => {
+                                                                : 'text-white/70 hover:text-white'}`, children: "History" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('citations'), className: `creal-hover-btn rounded-lg px-3 py-2 text-sm transition-colors ${tabMode === 'citations'
+                                                        ? 'bg-creal-accent text-black font-medium'
+                                                        : 'bg-white/15 text-white/90 hover:bg-white/25'}`, children: "Citations" }), tabMode === 'analysis' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => runAnalysis(), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Re-analyze" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setViewMode('minimized'), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Close" })] })] }), analysis.status === 'success' && article && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-creal-accent/20 px-2.5 py-1 text-xs font-medium text-creal-accent border border-creal-accent/40", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" }) }), "Insights powered by AI"] }), (article.author || article.authorImageUrl) && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", { onClick: (e) => {
                                                 e.preventDefault();
                                                 e.stopPropagation();
                                                 if (article.author) {
                                                     setShowAuthorProfile(true);
                                                 }
-                                            }, disabled: !article.author, className: "flex items-center gap-2 min-w-0 rounded-lg px-2 py-1 -ml-2 hover:bg-white/10 transition-colors disabled:cursor-default disabled:hover:bg-transparent group cursor-pointer", title: article.author ? `View ${article.author}'s profile` : undefined, children: [article.authorImageUrl ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: article.authorImageUrl, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : article.author ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-white/60 text-xs font-medium", children: "?" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex items-center gap-1.5", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0", children: [article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium text-white/90 truncate group-hover:text-creal-accent transition-colors", children: article.author })), article.source && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-[11px] text-white/50 truncate", children: article.source }))] }), article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "shrink-0 text-white/40 group-hover:text-creal-accent transition-colors", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("polyline", { points: "15 3 21 3 21 9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "10", y1: "14", x2: "21", y2: "3" })] }))] })] })), article.source && !article.author && !article.authorImageUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-[11px] text-white/50", children: article.source }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col", children: tabMode === 'history' ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HistoryView__WEBPACK_IMPORTED_MODULE_5__.HistoryView, { onSelectArticle: handleSelectHistoryArticle, onClose: () => setTabMode('analysis') })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4", children: [analysis.status === 'idle' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full min-h-[220px] flex-col items-center justify-center text-center", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mb-4 text-base text-white/90", children: article ? 'Click below to analyze this article' : 'No article detected on this page.' }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, disabled: !article, className: "creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg", children: "Analyze article" })] })), analysis.status === 'loading' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center gap-4 py-10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base text-white/80", children: "Analyzing article..." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "grid w-full max-w-sm grid-cols-3 gap-2", children: [1, 2, 3, 4, 5, 6].map((i) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-16 rounded-lg bg-white/10 animate-pulse" }, i))) })] })), analysis.status === 'error' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base font-medium text-creal-danger", children: analysis.error }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-1.5 text-xs text-white/70", children: "Add your Gemini API key in the extension popup." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, className: "creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35", children: "Retry" })] })), analysis.status === 'success' && analysis.bias && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ArticleInsightsDisplay, { bias: analysis.bias, className: "min-h-0 flex-1 flex" }))] })) }), videoState === 'success' && videoUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5", children: "Short clip (<15s)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("video", { src: videoUrl, controls: true, className: "w-full max-h-40 rounded-lg border border-white/10 bg-black/50", preload: "metadata" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", { href: videoUrl, download: "creal-article-clip.mp4", className: "mt-1.5 inline-block text-sm text-creal-accent hover:underline", children: "Download clip" })] })), videoState === 'error' && videoError && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "shrink-0 border-t border-white/20 px-4 py-2 bg-creal-danger/10", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm text-creal-danger", children: videoError }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs text-white/50", children: "Article insights \u00B7 CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { type: "button", onClick: runGenerateVideo, disabled: videoState === 'generating', title: analysis.status !== 'success'
+                                            }, disabled: !article.author, className: "flex items-center gap-2 min-w-0 rounded-lg px-2 py-1 -ml-2 hover:bg-white/10 transition-colors disabled:cursor-default disabled:hover:bg-transparent group cursor-pointer", title: article.author ? `View ${article.author}'s profile` : undefined, children: [article.authorImageUrl ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: article.authorImageUrl, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : article.author ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-white/60 text-xs font-medium", children: "?" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex items-center gap-1.5", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0", children: [article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium text-white/90 truncate group-hover:text-creal-accent transition-colors", children: article.author })), article.source && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-[11px] text-white/50 truncate", children: article.source }))] }), article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "shrink-0 text-white/40 group-hover:text-creal-accent transition-colors", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("polyline", { points: "15 3 21 3 21 9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "10", y1: "14", x2: "21", y2: "3" })] }))] })] })), article.source && !article.author && !article.authorImageUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-[11px] text-white/50", children: article.source }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col", children: tabMode === 'history' ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HistoryView__WEBPACK_IMPORTED_MODULE_5__.HistoryView, { onSelectArticle: handleSelectHistoryArticle, onClose: () => setTabMode('analysis') })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4", children: tabMode === 'citations' ? (article ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_CitationsView__WEBPACK_IMPORTED_MODULE_7__.CitationsView, { article: article })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "flex h-full flex-col items-center justify-center text-center", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-white/60", children: "Analyze an article to generate citations." }) }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [analysis.status === 'idle' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full min-h-[220px] flex-col items-center justify-center text-center", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mb-4 text-base text-white/90", children: article ? 'Click below to analyze this article' : 'No article detected on this page.' }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, disabled: !article, className: "creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg", children: "Analyze article" })] })), analysis.status === 'loading' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center gap-4 py-10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base text-white/80", children: "Analyzing article..." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "grid w-full max-w-sm grid-cols-3 gap-2", children: [1, 2, 3, 4, 5, 6].map((i) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-16 rounded-lg bg-white/10 animate-pulse" }, i))) })] })), analysis.status === 'error' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base font-medium text-creal-danger", children: analysis.error }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-1.5 text-xs text-white/70", children: "Add your Gemini API key in the extension popup." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, className: "creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35", children: "Retry" })] })), analysis.status === 'success' && analysis.bias && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ArticleInsightsDisplay, { bias: analysis.bias, className: "min-h-0 flex-1 flex" }))] })) })) }), videoState === 'success' && videoUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5", children: "Short clip (<15s)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("video", { src: videoUrl, controls: true, className: "w-full max-h-40 rounded-lg border border-white/10 bg-black/50", preload: "metadata" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", { href: videoUrl, download: "creal-article-clip.mp4", className: "mt-1.5 inline-block text-sm text-creal-accent hover:underline", children: "Download clip" })] })), videoState === 'error' && videoError && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "shrink-0 border-t border-white/20 px-4 py-2 bg-creal-danger/10", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm text-creal-danger", children: videoError }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs text-white/50", children: "Article insights \u00B7 CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { type: "button", onClick: runGenerateVideo, disabled: videoState === 'generating', title: analysis.status !== 'success'
                                                 ? 'Analyze the article first to generate a short clip'
                                                 : undefined, className: "creal-hover-btn rounded-xl bg-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/35 border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed", children: videoState === 'generating'
                                                 ? 'Generating clip…'
@@ -37087,13 +37247,51 @@ function toRadarScale(v) {
     return Math.round(((v + 100) / 200) * 100);
 }
 function ArticleInsightsDisplay({ bias, className = '' }) {
+    const [hoveredMetric, setHoveredMetric] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const metrics = [
-        { key: 'auth_lib', label: 'Auth. ↔ Libertarian', value: bias.auth_lib, range: 'bipolar' },
-        { key: 'nat_glob', label: 'National ↔ Global', value: bias.nat_glob, range: 'bipolar' },
-        { key: 'objectivity', label: 'Objectivity', value: bias.objectivity, range: '0-100' },
-        { key: 'sensationalism', label: 'Sensationalism', value: bias.sensationalism, range: '0-100' },
-        { key: 'clarity', label: 'Clarity', value: bias.clarity, range: '0-100' },
-        { key: 'tone_calm_urgent', label: 'Calm ↔ Urgent', value: bias.tone_calm_urgent, range: 'bipolar' },
+        {
+            key: 'auth_lib',
+            label: 'Auth. ↔ Libertarian',
+            value: bias.auth_lib,
+            range: 'bipolar',
+            description: 'Measures the balance between government authority and individual liberty.'
+        },
+        {
+            key: 'nat_glob',
+            label: 'National ↔ Global',
+            value: bias.nat_glob,
+            range: 'bipolar',
+            description: 'Contrast between national interests and global cooperation/perspectives.'
+        },
+        {
+            key: 'objectivity',
+            label: 'Objectivity',
+            value: bias.objectivity,
+            range: '0-100',
+            description: 'Indicates how factual and neutral the writing is (vs. opinionated).'
+        },
+        {
+            key: 'sensationalism',
+            label: 'Sensationalism',
+            value: bias.sensationalism,
+            range: '0-100',
+            description: 'Measures the use of emotional, dramatic, or clickbait language.'
+        },
+        {
+            key: 'clarity',
+            label: 'Clarity',
+            value: bias.clarity,
+            range: '0-100',
+            description: 'Evaluates how clear, well-structured, and easy to understand the text is.'
+        },
+        {
+            key: 'tone_calm_urgent',
+            label: 'Calm ↔ Urgent',
+            value: bias.tone_calm_urgent,
+            range: 'bipolar',
+            description: 'Assesses the emotional tone, from measured/calm to alarmist/urgent.'
+        },
     ];
     const radarValues = metrics.map((m) => m.range === 'bipolar' ? toRadarScale(m.value) : m.value);
     const center = 175;
@@ -37108,10 +37306,24 @@ function ArticleInsightsDisplay({ bias, className = '' }) {
         const angle = (i / metrics.length) * 2 * Math.PI - Math.PI / 2;
         return { x2: center + radius * Math.cos(angle), y2: center + radius * Math.sin(angle) };
     });
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: `flex min-h-0 gap-3 ${className}`, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex-1 overflow-y-auto pr-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, y: -10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.4 }, className: "mb-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/[0.08] to-white/[0.04] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mb-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm font-semibold text-white/90", children: "Political Leaning" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xs font-medium tabular-nums text-creal-accent", children: bias.left_right > 0 ? `+${bias.left_right}` : bias.left_right })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "relative h-3 rounded-full bg-white/10 overflow-hidden", children: [bias.left_right < 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${Math.abs(bias.left_right) / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute right-1/2 h-full bg-gradient-to-r from-blue-500 to-blue-400", style: { marginRight: 0 } })), bias.left_right > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${bias.left_right / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute left-1/2 h-full bg-gradient-to-r from-red-400 to-red-500" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "absolute left-1/2 top-0 h-full w-0.5 bg-white/40 -ml-px" })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mt-1.5 text-[10px] text-white/50", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Left" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Center" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Right" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-1.5", children: metrics.map((m, i) => {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { ref: containerRef, className: `flex min-h-0 gap-3 relative ${className}`, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { children: hoveredMetric && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, scale: 0.95 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.95 }, transition: { duration: 0.15 }, style: {
+                        position: 'absolute',
+                        left: hoveredMetric.x,
+                        top: hoveredMetric.y + 4,
+                        zIndex: 50,
+                        pointerEvents: 'none',
+                    }, className: "w-64 rounded-xl border border-white/20 bg-black/90 p-3 shadow-2xl backdrop-blur-md", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mb-1 text-xs font-bold text-creal-accent uppercase tracking-wider", children: hoveredMetric.label }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs text-white/90 leading-relaxed", children: hoveredMetric.description })] })) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex-1 overflow-y-auto pr-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, y: -10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.4 }, className: "mb-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/[0.08] to-white/[0.04] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mb-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm font-semibold text-white/90", children: "Political Leaning" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xs font-medium tabular-nums text-creal-accent", children: bias.left_right > 0 ? `+${bias.left_right}` : bias.left_right })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "relative h-3 rounded-full bg-white/10 overflow-hidden", children: [bias.left_right < 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${Math.abs(bias.left_right) / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute right-1/2 h-full bg-gradient-to-r from-blue-500 to-blue-400", style: { marginRight: 0 } })), bias.left_right > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${bias.left_right / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute left-1/2 h-full bg-gradient-to-r from-red-400 to-red-500" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "absolute left-1/2 top-0 h-full w-0.5 bg-white/40 -ml-px" })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mt-1.5 text-[10px] text-white/50", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Left" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Center" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Right" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-1.5", children: metrics.map((m, i) => {
                             const isBipolar = m.range === 'bipolar';
                             const displayVal = isBipolar ? (m.value > 0 ? '+' : '') + m.value : `${m.value}%`;
-                            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: i * 0.03 }, className: "creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-transform duration-200", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm text-white/85 truncate pr-2", title: m.label, children: m.label }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "shrink-0 text-sm font-semibold tabular-nums text-white", children: displayVal })] }, m.key));
+                            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: i * 0.03 }, className: "creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-colors duration-200 hover:bg-white/10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm text-white/85 truncate pr-2 cursor-help border-b border-dotted border-white/30 hover:text-white hover:border-white/60 transition-colors", title: m.label, onMouseEnter: (e) => {
+                                            if (containerRef.current) {
+                                                const containerRect = containerRef.current.getBoundingClientRect();
+                                                const targetRect = e.currentTarget.getBoundingClientRect();
+                                                const x = targetRect.left - containerRect.left;
+                                                const y = targetRect.bottom - containerRect.top;
+                                                setHoveredMetric({ label: m.label, description: m.description, x, y });
+                                            }
+                                        }, onMouseLeave: () => setHoveredMetric(null), children: m.label }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "shrink-0 text-sm font-semibold tabular-nums text-white", children: displayVal })] }, m.key));
                         }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { className: "mt-3 text-xs font-medium uppercase tracking-wider text-white/50", children: ["Confidence ", bias.confidence, "%"] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { className: "h-full rounded-full bg-creal-accent", initial: { width: 0 }, animate: { width: `${bias.confidence}%` }, transition: { duration: 0.5 } }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", { className: "mt-3 rounded-lg border border-white/10 bg-white/[0.06] p-2.5", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", { className: "mb-1.5 text-xs font-semibold uppercase tracking-wider text-white/50", children: "AI reasoning" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs leading-relaxed text-white/75", children: bias.reasoning })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", { className: "creal-metric-row shrink-0 rounded-xl border border-white/10 bg-white/[0.06] p-3 self-start transition-transform duration-200", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", { className: "mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50", children: "Insights overview" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { width: "240", height: "240", viewBox: "0 0 350 350", className: "overflow-visible", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", { id: "radarFill", x1: "0%", y1: "0%", x2: "100%", y2: "100%", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0%", stopColor: "rgba(0, 217, 255, 0.45)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "100%", stopColor: "rgba(0, 217, 255, 0.12)" })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", { id: "radarGlow", x: "-20%", y: "-20%", width: "140%", height: "140%", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { in: "SourceGraphic", stdDeviation: "2", result: "blur" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("feMerge", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feMergeNode", { in: "blur" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feMergeNode", { in: "SourceGraphic" })] })] })] }), [0.25, 0.5, 0.75, 1].map((r) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: center, cy: center, r: radius * r, fill: "none", stroke: "rgba(255,255,255,0.06)", strokeWidth: "1.5" }, r))), axisPoints.map((a, i) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: center, y1: center, x2: a.x2, y2: a.y2, stroke: "rgba(255,255,255,0.1)", strokeWidth: "1" }, i))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.g, { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.4 }, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("polygon", { points: polygonPoints, fill: "url(#radarFill)", stroke: "rgba(0, 217, 255, 0.85)", strokeWidth: "2", filter: "url(#radarGlow)" }) }), metrics.map((m, i) => {
                                 const angle = (i / metrics.length) * 2 * Math.PI - Math.PI / 2;
                                 const labelR = radius + 32;
@@ -37180,6 +37392,8 @@ function extractArticle() {
         excerpt: text.slice(0, 300).trim() + (text.length > 300 ? '...' : ''),
         author: getAuthor(),
         authorImageUrl: getAuthorImageUrl(),
+        date: getDate(),
+        publisher: getPublisher(),
     };
 }
 function getAuthor() {
@@ -37242,6 +37456,48 @@ function getAuthorImageUrl() {
     if (ogImage)
         return toAbsoluteUrl(ogImage);
     return undefined;
+}
+function getDate() {
+    const selectors = [
+        'meta[property="article:published_time"]',
+        'meta[name="date"]',
+        'meta[name="pubdate"]',
+        'meta[name="publish_date"]',
+        'meta[name="original-publish-date"]',
+        'time[itemprop="datePublished"]',
+        'time[datetime]',
+    ];
+    for (const sel of selectors) {
+        const el = document.querySelector(sel);
+        const val = el?.getAttribute('content') || el?.getAttribute('datetime') || el?.getAttribute('datetime');
+        if (val)
+            return val;
+    }
+    // Fallback to searching for date-like strings in standard bio/date areas
+    const dateElements = document.querySelectorAll('.date, .published, .timestamp, time');
+    for (const el of Array.from(dateElements)) {
+        if (el.textContent && /\d{4}/.test(el.textContent)) {
+            return el.textContent.trim();
+        }
+    }
+    return undefined;
+}
+function getPublisher() {
+    const ogSiteName = document.querySelector('meta[property="og:site_name"]')?.getAttribute('content');
+    if (ogSiteName)
+        return ogSiteName.trim();
+    const publisher = document.querySelector('meta[name="publisher"]')?.getAttribute('content');
+    if (publisher)
+        return publisher.trim();
+    const appName = document.querySelector('meta[name="application-name"]')?.getAttribute('content');
+    if (appName)
+        return appName.trim();
+    try {
+        return window.location.hostname.replace(/^www\./, '');
+    }
+    catch {
+        return undefined;
+    }
 }
 function isImageUrl(s) {
     return /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(s) || s.includes('img') || s.includes('avatar') || s.includes('photo');

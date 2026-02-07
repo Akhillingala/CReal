@@ -3,11 +3,12 @@
  * 75% viewport transparent overlay with 3D-style metrics and radar chart
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { extractArticle, type ExtractedArticle } from '../lib/utils/article-parser';
 import { HistoryView } from './HistoryView';
 import { AuthorProfile } from './AuthorProfile';
+import { CitationsView } from './CitationsView';
 import type { ArticleRecord } from '../lib/storage/types';
 
 interface BiasResult {
@@ -29,7 +30,7 @@ interface AnalysisState {
 }
 
 type ViewMode = 'minimized' | 'expanded';
-type TabMode = 'analysis' | 'history';
+type TabMode = 'analysis' | 'history' | 'citations';
 
 type VideoState = 'idle' | 'generating' | 'success' | 'error';
 
@@ -188,13 +189,13 @@ export function Overlay2D() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               onClick={openOverlay}
-              className="creal-btn-minimize flex h-20 w-20 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25"
+              className="creal-btn-minimize flex h-14 w-14 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25"
               title="CReal - Article insights"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -243,6 +244,15 @@ export function Overlay2D() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setTabMode('citations')}
+                    className={`creal-hover-btn rounded-lg px-3 py-2 text-sm transition-colors ${tabMode === 'citations'
+                      ? 'bg-creal-accent text-black font-medium'
+                      : 'bg-white/15 text-white/90 hover:bg-white/25'
+                      }`}
+                  >
+                    Citations
+                  </button>
                   {tabMode === 'analysis' && (
                     <button
                       onClick={() => runAnalysis()}
@@ -346,48 +356,60 @@ export function Overlay2D() {
                   />
                 ) : (
                   <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
-                    {analysis.status === 'idle' && (
-                      <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center">
-                        <p className="mb-4 text-base text-white/90">
-                          {article ? 'Click below to analyze this article' : 'No article detected on this page.'}
-                        </p>
-                        <button
-                          onClick={runAnalysis}
-                          disabled={!article}
-                          className="creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg"
-                        >
-                          Analyze article
-                        </button>
-                      </div>
-                    )}
-
-                    {analysis.status === 'loading' && (
-                      <div className="flex flex-col items-center justify-center gap-4 py-10">
-                        <div className="h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" />
-                        <p className="text-base text-white/80">Analyzing article...</p>
-                        <div className="grid w-full max-w-sm grid-cols-3 gap-2">
-                          {[1, 2, 3, 4, 5, 6].map((i) => (
-                            <div key={i} className="h-16 rounded-lg bg-white/10 animate-pulse" />
-                          ))}
+                    {tabMode === 'citations' ? (
+                      article ? (
+                        <CitationsView article={article} />
+                      ) : (
+                        <div className="flex h-full flex-col items-center justify-center text-center">
+                          <p className="text-white/60">Analyze an article to generate citations.</p>
                         </div>
-                      </div>
-                    )}
+                      )
+                    ) : (
+                      <>
+                        {analysis.status === 'idle' && (
+                          <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center">
+                            <p className="mb-4 text-base text-white/90">
+                              {article ? 'Click below to analyze this article' : 'No article detected on this page.'}
+                            </p>
+                            <button
+                              onClick={runAnalysis}
+                              disabled={!article}
+                              className="creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg"
+                            >
+                              Analyze article
+                            </button>
+                          </div>
+                        )}
 
-                    {analysis.status === 'error' && (
-                      <div className="rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg">
-                        <p className="text-base font-medium text-creal-danger">{analysis.error}</p>
-                        <p className="mt-1.5 text-xs text-white/70">Add your Gemini API key in the extension popup.</p>
-                        <button
-                          onClick={runAnalysis}
-                          className="creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35"
-                        >
-                          Retry
-                        </button>
-                      </div>
-                    )}
+                        {analysis.status === 'loading' && (
+                          <div className="flex flex-col items-center justify-center gap-4 py-10">
+                            <div className="h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" />
+                            <p className="text-base text-white/80">Analyzing article...</p>
+                            <div className="grid w-full max-w-sm grid-cols-3 gap-2">
+                              {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <div key={i} className="h-16 rounded-lg bg-white/10 animate-pulse" />
+                              ))}
+                            </div>
+                          </div>
+                        )}
 
-                    {analysis.status === 'success' && analysis.bias && (
-                      <ArticleInsightsDisplay bias={analysis.bias} className="min-h-0 flex-1 flex" />
+                        {analysis.status === 'error' && (
+                          <div className="rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg">
+                            <p className="text-base font-medium text-creal-danger">{analysis.error}</p>
+                            <p className="mt-1.5 text-xs text-white/70">Add your Gemini API key in the extension popup.</p>
+                            <button
+                              onClick={runAnalysis}
+                              className="creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35"
+                            >
+                              Retry
+                            </button>
+                          </div>
+                        )}
+
+                        {analysis.status === 'success' && analysis.bias && (
+                          <ArticleInsightsDisplay bias={analysis.bias} className="min-h-0 flex-1 flex" />
+                        )}
+                      </>
                     )}
                   </div>
                 )}
@@ -463,14 +485,54 @@ function toRadarScale(v: number): number {
   return Math.round(((v + 100) / 200) * 100);
 }
 
+
 function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; className?: string }) {
+  const [hoveredMetric, setHoveredMetric] = useState<{ label: string; description: string; x: number; y: number } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const metrics = [
-    { key: 'auth_lib', label: 'Auth. ↔ Libertarian', value: bias.auth_lib, range: 'bipolar' as const },
-    { key: 'nat_glob', label: 'National ↔ Global', value: bias.nat_glob, range: 'bipolar' as const },
-    { key: 'objectivity', label: 'Objectivity', value: bias.objectivity, range: '0-100' as const },
-    { key: 'sensationalism', label: 'Sensationalism', value: bias.sensationalism, range: '0-100' as const },
-    { key: 'clarity', label: 'Clarity', value: bias.clarity, range: '0-100' as const },
-    { key: 'tone_calm_urgent', label: 'Calm ↔ Urgent', value: bias.tone_calm_urgent, range: 'bipolar' as const },
+    {
+      key: 'auth_lib',
+      label: 'Auth. ↔ Libertarian',
+      value: bias.auth_lib,
+      range: 'bipolar' as const,
+      description: 'Measures the balance between government authority and individual liberty.'
+    },
+    {
+      key: 'nat_glob',
+      label: 'National ↔ Global',
+      value: bias.nat_glob,
+      range: 'bipolar' as const,
+      description: 'Contrast between national interests and global cooperation/perspectives.'
+    },
+    {
+      key: 'objectivity',
+      label: 'Objectivity',
+      value: bias.objectivity,
+      range: '0-100' as const,
+      description: 'Indicates how factual and neutral the writing is (vs. opinionated).'
+    },
+    {
+      key: 'sensationalism',
+      label: 'Sensationalism',
+      value: bias.sensationalism,
+      range: '0-100' as const,
+      description: 'Measures the use of emotional, dramatic, or clickbait language.'
+    },
+    {
+      key: 'clarity',
+      label: 'Clarity',
+      value: bias.clarity,
+      range: '0-100' as const,
+      description: 'Evaluates how clear, well-structured, and easy to understand the text is.'
+    },
+    {
+      key: 'tone_calm_urgent',
+      label: 'Calm ↔ Urgent',
+      value: bias.tone_calm_urgent,
+      range: 'bipolar' as const,
+      description: 'Assesses the emotional tone, from measured/calm to alarmist/urgent.'
+    },
   ];
 
   const radarValues = metrics.map((m) =>
@@ -490,7 +552,30 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
   });
 
   return (
-    <div className={`flex min-h-0 gap-3 ${className}`}>
+    <div ref={containerRef} className={`flex min-h-0 gap-3 relative ${className}`}>
+      {/* Tooltip Portal-like rendering */}
+      <AnimatePresence>
+        {hoveredMetric && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            style={{
+              position: 'absolute',
+              left: hoveredMetric.x,
+              top: hoveredMetric.y + 4,
+              zIndex: 50,
+              pointerEvents: 'none',
+            }}
+            className="w-64 rounded-xl border border-white/20 bg-black/90 p-3 shadow-2xl backdrop-blur-md"
+          >
+            <p className="mb-1 text-xs font-bold text-creal-accent uppercase tracking-wider">{hoveredMetric.label}</p>
+            <p className="text-xs text-white/90 leading-relaxed">{hoveredMetric.description}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Left: scrollable list of metric boxes */}
       <div className="min-w-0 flex-1 overflow-y-auto pr-1">
         {/* Political Leaning Bar - Featured at top */}
@@ -546,9 +631,22 @@ function ArticleInsightsDisplay({ bias, className = '' }: { bias: BiasResult; cl
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.03 }}
-                className="creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-transform duration-200"
+                className="creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-colors duration-200 hover:bg-white/10"
               >
-                <span className="text-sm text-white/85 truncate pr-2" title={m.label}>
+                <span
+                  className="text-sm text-white/85 truncate pr-2 cursor-help border-b border-dotted border-white/30 hover:text-white hover:border-white/60 transition-colors"
+                  title={m.label}
+                  onMouseEnter={(e) => {
+                    if (containerRef.current) {
+                      const containerRect = containerRef.current.getBoundingClientRect();
+                      const targetRect = e.currentTarget.getBoundingClientRect();
+                      const x = targetRect.left - containerRect.left;
+                      const y = targetRect.bottom - containerRect.top;
+                      setHoveredMetric({ label: m.label, description: m.description, x, y });
+                    }
+                  }}
+                  onMouseLeave={() => setHoveredMetric(null)}
+                >
                   {m.label}
                 </span>
                 <span className="shrink-0 text-sm font-semibold tabular-nums text-white">

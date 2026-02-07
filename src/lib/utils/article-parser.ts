@@ -31,6 +31,7 @@ const IGNORE_SELECTORS = [
   '.social-share',
 ];
 
+
 export interface ExtractedArticle {
   title: string;
   text: string;
@@ -39,6 +40,8 @@ export interface ExtractedArticle {
   excerpt?: string;
   author?: string;
   authorImageUrl?: string;
+  date?: string;
+  publisher?: string;
 }
 
 export function extractArticle(): ExtractedArticle | null {
@@ -59,6 +62,8 @@ export function extractArticle(): ExtractedArticle | null {
     excerpt: text.slice(0, 300).trim() + (text.length > 300 ? '...' : ''),
     author: getAuthor(),
     authorImageUrl: getAuthorImageUrl(),
+    date: getDate(),
+    publisher: getPublisher(),
   };
 }
 
@@ -123,6 +128,51 @@ function getAuthorImageUrl(): string | undefined {
   return undefined;
 }
 
+function getDate(): string | undefined {
+  const selectors = [
+    'meta[property="article:published_time"]',
+    'meta[name="date"]',
+    'meta[name="pubdate"]',
+    'meta[name="publish_date"]',
+    'meta[name="original-publish-date"]',
+    'time[itemprop="datePublished"]',
+    'time[datetime]',
+  ];
+
+  for (const sel of selectors) {
+    const el = document.querySelector(sel);
+    const val = el?.getAttribute('content') || el?.getAttribute('datetime') || el?.getAttribute('datetime');
+    if (val) return val;
+  }
+
+  // Fallback to searching for date-like strings in standard bio/date areas
+  const dateElements = document.querySelectorAll('.date, .published, .timestamp, time');
+  for (const el of Array.from(dateElements)) {
+    if (el.textContent && /\d{4}/.test(el.textContent)) {
+      return el.textContent.trim();
+    }
+  }
+
+  return undefined;
+}
+
+function getPublisher(): string | undefined {
+  const ogSiteName = document.querySelector('meta[property="og:site_name"]')?.getAttribute('content');
+  if (ogSiteName) return ogSiteName.trim();
+
+  const publisher = document.querySelector('meta[name="publisher"]')?.getAttribute('content');
+  if (publisher) return publisher.trim();
+
+  const appName = document.querySelector('meta[name="application-name"]')?.getAttribute('content');
+  if (appName) return appName.trim();
+
+  try {
+    return window.location.hostname.replace(/^www\./, '');
+  } catch {
+    return undefined;
+  }
+}
+
 function isImageUrl(s: string): boolean {
   return /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(s) || s.includes('img') || s.includes('avatar') || s.includes('photo');
 }
@@ -185,3 +235,4 @@ function getSource(url: string): string | undefined {
     return undefined;
   }
 }
+
