@@ -15,53 +15,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_analyzers_bias_detector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/analyzers/bias-detector */ "./src/lib/analyzers/bias-detector.ts");
 /* harmony import */ var _lib_video_video_prompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/video/video-prompt */ "./src/lib/video/video-prompt.ts");
 /* harmony import */ var _lib_video_veo_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/video/veo-client */ "./src/lib/video/veo-client.ts");
+/* harmony import */ var _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/storage/storage-service */ "./src/lib/storage/storage-service.ts");
+/* harmony import */ var _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @google/generative-ai */ "./node_modules/@google/generative-ai/dist/index.mjs");
 /**
  * CReal - API Manager
- * Coordinates AI analysis requests, caching, and video generation
+ * Coordinates AI analysis requests, persistent storage, and video generation
  */
 
 
 
+
+
 const biasAnalyzer = new _lib_analyzers_bias_detector__WEBPACK_IMPORTED_MODULE_0__.BiasAnalyzer();
-const cache = new Map();
+const storageService = new _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_3__.StorageService();
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-function getCacheKey(url, textHash) {
-    return `${url}:${textHash}`;
-}
-function simpleHash(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
-        hash |= 0;
-    }
-    return Math.abs(hash).toString(36);
-}
 class ApiManager {
     async analyzeArticle(payload) {
-        const { text, url = 'unknown' } = payload;
-        const textHash = simpleHash(text.slice(0, 2000));
-        const cacheKey = getCacheKey(url, textHash);
-        const cached = cache.get(cacheKey);
-        if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-            return { ...cached, cached: true };
+        const { text, url = 'unknown', title = 'Untitled Article', author, source } = payload;
+        // Check persistent storage first
+        const stored = await storageService.getAnalysis(url);
+        if (stored && Date.now() - stored.timestamp < CACHE_TTL_MS) {
+            return {
+                bias: stored.bias,
+                cached: true,
+                timestamp: stored.timestamp,
+            };
         }
+        // Run fresh analysis
         const bias = await biasAnalyzer.analyze(text);
+        const timestamp = Date.now();
         const result = {
             bias,
             cached: false,
-            timestamp: Date.now(),
+            timestamp,
         };
-        cache.set(cacheKey, result);
+        // Save to persistent storage
+        const record = {
+            url,
+            title,
+            author,
+            source,
+            bias,
+            timestamp,
+            cached: false,
+        };
+        await storageService.saveAnalysis(record);
+        // Auto-cleanup old analyses (non-blocking)
+        storageService.clearOldAnalyses().catch((err) => {
+            console.warn('[CReal] Failed to clear old analyses:', err);
+        });
         return result;
     }
-    getCachedAnalysis(url) {
-        for (const [key, value] of cache.entries()) {
-            if (key.startsWith(`${url}:`)) {
-                return value;
-            }
-        }
-        return null;
+    async getCachedAnalysis(url) {
+        const stored = await storageService.getAnalysis(url);
+        if (!stored)
+            return null;
+        return {
+            bias: stored.bias,
+            cached: true,
+            timestamp: stored.timestamp,
+        };
+    }
+    async getArticleHistory() {
+        return storageService.getAllAnalyses();
+    }
+    async deleteArticle(url) {
+        return storageService.deleteAnalysis(url);
+    }
+    async clearHistory() {
+        return storageService.clearAllAnalyses();
     }
     /** Generate a short (<15s) video clip summarizing the article. Uses same Gemini API key. */
     async generateArticleVideo(payload) {
@@ -72,6 +94,80 @@ class ApiManager {
         const context = [payload.excerpt, payload.reasoning].filter(Boolean).join('\n\n');
         const prompt = await (0,_lib_video_video_prompt__WEBPACK_IMPORTED_MODULE_1__.generateVideoPrompt)(apiKey, payload.title, context);
         return (0,_lib_video_veo_client__WEBPACK_IMPORTED_MODULE_2__.generateVideo)(apiKey, prompt);
+    }
+    /** Fetch author information including bio, articles, and professional details */
+    async fetchAuthorInfo(payload) {
+        const { authorName } = payload;
+        const apiKey = await biasAnalyzer.getApiKey();
+        if (!apiKey) {
+            throw new Error('No API key. Add your Gemini API key in the extension popup.');
+        }
+        try {
+            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__.GoogleGenerativeAI(apiKey);
+            // Try models in order of preference
+            const modelNames = ['gemini-2.0-flash', 'gemini-1.5-flash'];
+            let rawText = '';
+            let lastError;
+            const prompt = `Search for information about the journalist/author "${authorName}". Provide:
+1. A brief biography (2-3 sentences)
+2. Their occupation/role
+3. Age (if publicly available)
+4. List of 3-5 notable articles they've written (with titles and URLs if available)
+5. Any social media or professional profile links (LinkedIn, Twitter, etc.)
+
+Format your response as a JSON object with this structure:
+{
+  "name": "${authorName}",
+  "bio": "brief biography",
+  "occupation": "their role/title",
+  "age": "age if available, otherwise null",
+  "articles": [
+    {"title": "article title", "url": "article url", "source": "publication", "date": "publication date"}
+  ],
+  "socialLinks": [
+    {"platform": "platform name", "url": "profile url"}
+  ]
+}
+
+If you cannot find specific information, use null for that field. Only include verified, publicly available information. Return only valid JSON.`;
+            for (const modelName of modelNames) {
+                try {
+                    const model = genAI.getGenerativeModel({
+                        model: modelName,
+                        generationConfig: {
+                            responseMimeType: "application/json"
+                        }
+                    });
+                    const result = await model.generateContent(prompt);
+                    const response = result.response;
+                    rawText = response.text();
+                    if (rawText)
+                        break; // Success
+                }
+                catch (err) {
+                    lastError = err;
+                    console.warn(`[CReal] Failed to fetch author info with ${modelName}:`, err);
+                    // Continue to next model
+                }
+            }
+            if (!rawText) {
+                throw lastError || new Error('All models failed to respond');
+            }
+            // Extract JSON from the response (handle markdown code blocks if any remain)
+            let jsonText = rawText.trim();
+            if (jsonText.startsWith('```json')) {
+                jsonText = jsonText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+            }
+            else if (jsonText.startsWith('```')) {
+                jsonText = jsonText.replace(/^```\s*/, '').replace(/\s*```$/, '');
+            }
+            const authorInfo = JSON.parse(jsonText);
+            return { authorInfo };
+        }
+        catch (error) {
+            console.error('[CReal] Error fetching author info:', error);
+            throw new Error('Failed to fetch author information. Please try again.');
+        }
     }
 }
 
@@ -122,7 +218,7 @@ class BiasAnalyzer {
             if (fromStorage && typeof fromStorage === 'string')
                 return fromStorage;
             // Fallback: key from .env.local at build time (run: GEMINI_API_KEY=xxx npm run build)
-            const fromEnv =  true ? "AIzaSyDU1mV7OfK9JVnsXmTOEpX0LivTdIfFFjo" : 0;
+            const fromEnv =  true ? "AIzaSyDmG32oQMw3iY67H_rM1X_HWmlQWWzcoHI" : 0;
             return fromEnv?.trim() || null;
         }
         catch {
@@ -185,6 +281,191 @@ class BiasAnalyzer {
             confidence: 0,
             reasoning: 'AI analysis unavailable. Add GEMINI_API_KEY to enable.',
         };
+    }
+}
+
+
+/***/ },
+
+/***/ "./src/lib/storage/storage-service.ts"
+/*!********************************************!*\
+  !*** ./src/lib/storage/storage-service.ts ***!
+  \********************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StorageService: () => (/* binding */ StorageService)
+/* harmony export */ });
+/**
+ * CReal - Storage Service
+ * Handles persistent storage of article analyses using Chrome Storage API
+ */
+const STORAGE_KEY = 'creal_article_history';
+const STORAGE_VERSION = 1;
+const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+class StorageService {
+    /**
+     * Save an article analysis to persistent storage
+     */
+    async saveAnalysis(record) {
+        try {
+            const data = await this.getStorageData();
+            data.articles[record.url] = record;
+            await this.setStorageData(data);
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to save analysis:', error);
+            throw error;
+        }
+    }
+    /**
+     * Retrieve an article analysis by URL
+     */
+    async getAnalysis(url) {
+        try {
+            const data = await this.getStorageData();
+            return data.articles[url] || null;
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to get analysis:', error);
+            return null;
+        }
+    }
+    /**
+     * Get all stored analyses, sorted by timestamp (newest first)
+     */
+    async getAllAnalyses() {
+        try {
+            const data = await this.getStorageData();
+            return Object.values(data.articles).sort((a, b) => b.timestamp - a.timestamp);
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to get all analyses:', error);
+            return [];
+        }
+    }
+    /**
+     * Get lightweight metadata for all articles (for list views)
+     */
+    async getAllMetadata() {
+        try {
+            const analyses = await this.getAllAnalyses();
+            return analyses.map((record) => ({
+                url: record.url,
+                title: record.title,
+                author: record.author,
+                source: record.source,
+                timestamp: record.timestamp,
+                leftRight: record.bias.left_right,
+                objectivity: record.bias.objectivity,
+                confidence: record.bias.confidence,
+            }));
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to get metadata:', error);
+            return [];
+        }
+    }
+    /**
+     * Delete a specific article analysis
+     */
+    async deleteAnalysis(url) {
+        try {
+            const data = await this.getStorageData();
+            delete data.articles[url];
+            await this.setStorageData(data);
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to delete analysis:', error);
+            throw error;
+        }
+    }
+    /**
+     * Clear all stored analyses
+     */
+    async clearAllAnalyses() {
+        try {
+            const data = {
+                articles: {},
+                version: STORAGE_VERSION,
+            };
+            await this.setStorageData(data);
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to clear analyses:', error);
+            throw error;
+        }
+    }
+    /**
+     * Remove analyses older than MAX_AGE_MS
+     */
+    async clearOldAnalyses() {
+        try {
+            const data = await this.getStorageData();
+            const cutoffTime = Date.now() - MAX_AGE_MS;
+            let removedCount = 0;
+            for (const [url, record] of Object.entries(data.articles)) {
+                if (record.timestamp < cutoffTime) {
+                    delete data.articles[url];
+                    removedCount++;
+                }
+            }
+            if (removedCount > 0) {
+                await this.setStorageData(data);
+            }
+            return removedCount;
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to clear old analyses:', error);
+            return 0;
+        }
+    }
+    /**
+     * Get storage statistics
+     */
+    async getStats() {
+        try {
+            const data = await this.getStorageData();
+            const articles = Object.values(data.articles);
+            const timestamps = articles.map((a) => a.timestamp);
+            return {
+                count: articles.length,
+                oldestTimestamp: timestamps.length > 0 ? Math.min(...timestamps) : null,
+                newestTimestamp: timestamps.length > 0 ? Math.max(...timestamps) : null,
+                estimatedSizeBytes: JSON.stringify(data).length,
+            };
+        }
+        catch (error) {
+            console.error('[CReal Storage] Failed to get stats:', error);
+            return {
+                count: 0,
+                oldestTimestamp: null,
+                newestTimestamp: null,
+                estimatedSizeBytes: 0,
+            };
+        }
+    }
+    /**
+     * Get storage data from Chrome Storage API
+     */
+    async getStorageData() {
+        const result = await chrome.storage.local.get(STORAGE_KEY);
+        const stored = result[STORAGE_KEY];
+        if (!stored || stored.version !== STORAGE_VERSION) {
+            // Initialize or migrate storage
+            return {
+                articles: {},
+                version: STORAGE_VERSION,
+            };
+        }
+        return stored;
+    }
+    /**
+     * Save storage data to Chrome Storage API
+     */
+    async setStorageData(data) {
+        await chrome.storage.local.set({ [STORAGE_KEY]: data });
     }
 }
 
@@ -279,48 +560,74 @@ async function pollOperation(apiKey, operationName) {
 function getVideoUri(response) {
     if (!response || typeof response !== 'object')
         return null;
+    // Debug: Log the full response structure
+    console.log('[CReal Veo] Full response:', JSON.stringify(response, null, 2));
     // Path 1: generateVideoResponse.generatedSamples[0].video.uri (Gemini REST, camelCase)
     const gen = response.generateVideoResponse;
     if (gen && typeof gen === 'object') {
+        console.log('[CReal Veo] Found generateVideoResponse:', JSON.stringify(gen, null, 2));
         const samples = gen.generatedSamples ??
             gen.generated_samples;
-        const firstSample = samples?.[0];
-        if (firstSample && typeof firstSample === 'object') {
-            const video = firstSample.video ?? firstSample;
-            const uri = (typeof video?.uri === 'string' ? video.uri : null) ??
-                (typeof video?.uri === 'string'
-                    ? video.uri
-                    : null);
-            if (typeof uri === 'string')
-                return uri;
+        if (samples && Array.isArray(samples)) {
+            console.log('[CReal Veo] Found samples array, length:', samples.length);
+            const firstSample = samples[0];
+            if (firstSample && typeof firstSample === 'object') {
+                console.log('[CReal Veo] First sample:', JSON.stringify(firstSample, null, 2));
+                // Try direct video property
+                const video = firstSample.video;
+                if (video && typeof video === 'object') {
+                    const uri = video.uri;
+                    if (typeof uri === 'string') {
+                        console.log('[CReal Veo] Found URI in video.uri:', uri);
+                        return uri;
+                    }
+                }
+                // Try URI directly on sample
+                const directUri = firstSample.uri;
+                if (typeof directUri === 'string') {
+                    console.log('[CReal Veo] Found URI directly on sample:', directUri);
+                    return directUri;
+                }
+            }
         }
     }
     // Path 2: generatedVideos[0].video.uri (SDK-style)
     const generatedVideos = response.generatedVideos;
-    const firstGen = generatedVideos?.[0];
-    const videoFromGen = firstGen?.video;
-    const uri2 = videoFromGen?.uri;
-    if (typeof uri2 === 'string')
-        return uri2;
+    if (generatedVideos && Array.isArray(generatedVideos)) {
+        const firstGen = generatedVideos[0];
+        const videoFromGen = firstGen?.video;
+        const uri2 = videoFromGen?.uri;
+        if (typeof uri2 === 'string')
+            return uri2;
+    }
     // Path 3: videos[0].gcsUri or videos[0].uri (Vertex REST-style)
     const videos = response.videos;
-    const firstVideo = videos?.[0];
-    const gcsUri = firstVideo?.gcsUri ?? firstVideo?.uri;
-    if (typeof gcsUri === 'string')
-        return gcsUri;
+    if (videos && Array.isArray(videos)) {
+        const firstVideo = videos[0];
+        const gcsUri = firstVideo?.gcsUri ?? firstVideo?.uri;
+        if (typeof gcsUri === 'string')
+            return gcsUri;
+    }
     // Path 4: Deep search inside generateVideoResponse for any array of items with .video.uri
     if (gen && typeof gen === 'object') {
         for (const key of Object.keys(gen)) {
             const arr = gen[key];
             if (Array.isArray(arr) && arr.length > 0) {
                 const first = arr[0];
-                const video = first?.video;
-                const u = video?.uri ?? first?.uri;
-                if (typeof u === 'string' && (u.startsWith('http') || u.startsWith('gs://')))
-                    return u;
+                if (first && typeof first === 'object') {
+                    const video = first.video;
+                    const u = video?.uri ?? first?.uri;
+                    if (typeof u === 'string' && (u.startsWith('http') || u.startsWith('gs://')))
+                        return u;
+                }
             }
         }
     }
+    // Path 5: Check if response itself has a uri field
+    const topLevelUri = response.uri;
+    if (typeof topLevelUri === 'string')
+        return topLevelUri;
+    console.error('[CReal Veo] Could not find video URI in response. Available keys:', Object.keys(response));
     return null;
 }
 /**
@@ -1985,7 +2292,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api-manager */ "./src/background/api-manager.ts");
 /**
  * CReal - Background Service Worker
- * Handles API communication, caching, and message passing between content scripts
+ * Handles API communication, persistent storage, and message passing between content scripts
  */
 
 const apiManager = new _api_manager__WEBPACK_IMPORTED_MODULE_0__.ApiManager();
@@ -2007,8 +2314,18 @@ async function handleMessage(message) {
             return apiManager.analyzeArticle(message.payload);
         case 'GET_CACHED_ANALYSIS':
             return apiManager.getCachedAnalysis(message.payload);
+        case 'GET_ARTICLE_HISTORY':
+            return apiManager.getArticleHistory();
+        case 'DELETE_ARTICLE':
+            await apiManager.deleteArticle(message.payload);
+            return { success: true };
+        case 'CLEAR_HISTORY':
+            await apiManager.clearHistory();
+            return { success: true };
         case 'GENERATE_VIDEO':
             return apiManager.generateArticleVideo(message.payload);
+        case 'FETCH_AUTHOR_INFO':
+            return apiManager.fetchAuthorInfo(message.payload);
         default:
             throw new Error(`Unknown message type: ${message.type}`);
     }

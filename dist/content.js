@@ -582,44 +582,60 @@ video {
 .fixed {
   position: fixed;
 }
-<<<<<<< Updated upstream
-.bottom-6 {
-  bottom: 1.5rem;
-}
-=======
 .absolute {
   position: absolute;
 }
 .relative {
   position: relative;
 }
+.inset-0 {
+  inset: 0px;
+}
 .bottom-6 {
   bottom: 1.5rem;
 }
-.left-0 {
-  left: 0px;
+.left-1\\/2 {
+  left: 50%;
 }
->>>>>>> Stashed changes
 .left-\\[12\\.5vw\\] {
   left: 12.5vw;
+}
+.right-1\\/2 {
+  right: 50%;
 }
 .right-6 {
   right: 1.5rem;
 }
+.top-0 {
+  top: 0px;
+}
 .top-\\[12\\.5vh\\] {
   top: 12.5vh;
 }
-<<<<<<< Updated upstream
-=======
-.top-full {
-  top: 100%;
+.z-10 {
+  z-index: 10;
 }
-.z-50 {
-  z-index: 50;
-}
->>>>>>> Stashed changes
 .z-\\[2147483647\\] {
   z-index: 2147483647;
+}
+.z-\\[2147483648\\] {
+  z-index: 2147483648;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.-ml-2 {
+  margin-left: -0.5rem;
+}
+.-ml-px {
+  margin-left: -1px;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-1\\.5 {
+  margin-bottom: 0.375rem;
 }
 .mb-2 {
   margin-bottom: 0.5rem;
@@ -633,6 +649,9 @@ video {
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .mt-1\\.5 {
   margin-top: 0.375rem;
 }
@@ -645,16 +664,20 @@ video {
 .mt-4 {
   margin-top: 1rem;
 }
-<<<<<<< Updated upstream
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.block {
+  display: block;
+}
 .inline-block {
   display: inline-block;
 }
 .inline {
   display: inline;
-=======
-.mt-5 {
-  margin-top: 1.25rem;
->>>>>>> Stashed changes
 }
 .flex {
   display: flex;
@@ -665,7 +688,6 @@ video {
 .grid {
   display: grid;
 }
-<<<<<<< Updated upstream
 .h-1\\.5 {
   height: 0.375rem;
 }
@@ -674,30 +696,21 @@ video {
 }
 .h-16 {
   height: 4rem;
-=======
-.hidden {
-  display: none;
-}
-.h-1\\.5 {
-  height: 0.375rem;
-}
-.h-14 {
-  height: 3.5rem;
->>>>>>> Stashed changes
 }
 .h-20 {
   height: 5rem;
 }
-<<<<<<< Updated upstream
+.h-3 {
+  height: 0.75rem;
+}
 .h-3\\.5 {
   height: 0.875rem;
 }
+.h-4 {
+  height: 1rem;
+}
 .h-8 {
   height: 2rem;
-=======
-.h-24 {
-  height: 6rem;
->>>>>>> Stashed changes
 }
 .h-\\[75vh\\] {
   height: 75vh;
@@ -705,21 +718,32 @@ video {
 .h-full {
   height: 100%;
 }
-<<<<<<< Updated upstream
 .max-h-40 {
   max-height: 10rem;
 }
-=======
->>>>>>> Stashed changes
+.max-h-64 {
+  max-height: 16rem;
+}
+.max-h-\\[80vh\\] {
+  max-height: 80vh;
+}
+.max-h-\\[calc\\(80vh-80px\\)\\] {
+  max-height: calc(80vh - 80px);
+}
 .min-h-0 {
   min-height: 0px;
 }
 .min-h-\\[220px\\] {
   min-height: 220px;
 }
-<<<<<<< Updated upstream
+.w-0\\.5 {
+  width: 0.125rem;
+}
 .w-12 {
   width: 3rem;
+}
+.w-16 {
+  width: 4rem;
 }
 .w-20 {
   width: 5rem;
@@ -727,18 +751,11 @@ video {
 .w-3\\.5 {
   width: 0.875rem;
 }
+.w-4 {
+  width: 1rem;
+}
 .w-8 {
   width: 2rem;
-=======
-.w-14 {
-  width: 3.5rem;
-}
-.w-20 {
-  width: 5rem;
-}
-.w-64 {
-  width: 16rem;
->>>>>>> Stashed changes
 }
 .w-96 {
   width: 24rem;
@@ -751,6 +768,9 @@ video {
 }
 .min-w-0 {
   min-width: 0px;
+}
+.max-w-2xl {
+  max-width: 42rem;
 }
 .max-w-lg {
   max-width: 32rem;
@@ -782,6 +802,9 @@ video {
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -790,6 +813,9 @@ video {
 }
 .flex-wrap {
   flex-wrap: wrap;
+}
+.items-start {
+  align-items: flex-start;
 }
 .items-center {
   align-items: center;
@@ -800,35 +826,40 @@ video {
 .justify-between {
   justify-content: space-between;
 }
-<<<<<<< Updated upstream
+.gap-1 {
+  gap: 0.25rem;
+}
 .gap-1\\.5 {
   gap: 0.375rem;
 }
 .gap-2 {
   gap: 0.5rem;
 }
-=======
->>>>>>> Stashed changes
 .gap-3 {
   gap: 0.75rem;
 }
 .gap-4 {
   gap: 1rem;
 }
-<<<<<<< Updated upstream
 .space-y-1\\.5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
-=======
-.gap-6 {
-  gap: 1.5rem;
 }
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
->>>>>>> Stashed changes
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 .self-start {
   align-self: flex-start;
@@ -855,6 +886,9 @@ video {
 }
 .rounded-lg {
   border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
 }
 .rounded-xl {
   border-radius: 0.75rem;
@@ -898,6 +932,9 @@ video {
 .border-white\\/30 {
   border-color: rgb(255 255 255 / 0.3);
 }
+.border-white\\/5 {
+  border-color: rgb(255 255 255 / 0.05);
+}
 .border-t-creal-accent {
   --tw-border-opacity: 1;
   border-top-color: rgb(0 217 255 / var(--tw-border-opacity, 1));
@@ -908,6 +945,12 @@ video {
 }
 .bg-black\\/50 {
   background-color: rgb(0 0 0 / 0.5);
+}
+.bg-black\\/60 {
+  background-color: rgb(0 0 0 / 0.6);
+}
+.bg-black\\/80 {
+  background-color: rgb(0 0 0 / 0.8);
 }
 .bg-black\\/95 {
   background-color: rgb(0 0 0 / 0.95);
@@ -930,6 +973,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(14 116 144 / var(--tw-bg-opacity, 1));
 }
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
+}
 .bg-white\\/10 {
   background-color: rgb(255 255 255 / 0.1);
 }
@@ -938,6 +985,9 @@ video {
 }
 .bg-white\\/25 {
   background-color: rgb(255 255 255 / 0.25);
+}
+.bg-white\\/40 {
+  background-color: rgb(255 255 255 / 0.4);
 }
 .bg-white\\/5 {
   background-color: rgb(255 255 255 / 0.05);
@@ -948,22 +998,66 @@ video {
 .bg-white\\/\\[0\\.03\\] {
   background-color: rgb(255 255 255 / 0.03);
 }
+.bg-white\\/\\[0\\.04\\] {
+  background-color: rgb(255 255 255 / 0.04);
+}
 .bg-white\\/\\[0\\.06\\] {
   background-color: rgb(255 255 255 / 0.06);
+}
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+.from-blue-500 {
+  --tw-gradient-from: #3b82f6 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(59 130 246 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-creal-accent {
+  --tw-gradient-from: #00D9FF var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 217 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-red-400 {
+  --tw-gradient-from: #f87171 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(248 113 113 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-white\\/\\[0\\.08\\] {
+  --tw-gradient-from: rgb(255 255 255 / 0.08) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-blue-400 {
+  --tw-gradient-to: #60a5fa var(--tw-gradient-to-position);
+}
+.to-cyan-600 {
+  --tw-gradient-to: #0891b2 var(--tw-gradient-to-position);
+}
+.to-red-500 {
+  --tw-gradient-to: #ef4444 var(--tw-gradient-to-position);
+}
+.to-white\\/\\[0\\.04\\] {
+  --tw-gradient-to: rgb(255 255 255 / 0.04) var(--tw-gradient-to-position);
 }
 .fill-white\\/50 {
   fill: rgb(255 255 255 / 0.5);
 }
-<<<<<<< Updated upstream
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.p-1 {
+  padding: 0.25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
 .p-2\\.5 {
   padding: 0.625rem;
 }
-=======
->>>>>>> Stashed changes
 .p-3 {
   padding: 0.75rem;
 }
@@ -972,16 +1066,17 @@ video {
 }
 .p-5 {
   padding: 1.25rem;
-<<<<<<< Updated upstream
-=======
 }
 .p-6 {
   padding: 1.5rem;
 }
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
->>>>>>> Stashed changes
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-2\\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }
 .px-3 {
   padding-left: 0.75rem;
@@ -995,23 +1090,33 @@ video {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
-<<<<<<< Updated upstream
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-=======
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
->>>>>>> Stashed changes
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.py-0\\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+.py-1\\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .py-2 {
   padding-top: 0.5rem;
@@ -1029,14 +1134,12 @@ video {
   padding-top: 0.875rem;
   padding-bottom: 0.875rem;
 }
-<<<<<<< Updated upstream
-.pr-1 {
-  padding-right: 0.25rem;
-=======
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
->>>>>>> Stashed changes
+}
+.pr-1 {
+  padding-right: 0.25rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
@@ -1047,6 +1150,13 @@ video {
 .font-sans {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-\\[10px\\] {
+  font-size: 10px;
+}
 .text-\\[11px\\] {
   font-size: 11px;
 }
@@ -1056,6 +1166,10 @@ video {
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 .text-sm {
   font-size: 0.875rem;
@@ -1105,6 +1219,14 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 0 85 / var(--tw-text-opacity, 1));
 }
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity, 1));
+}
 .text-creal-accent {
   --tw-text-opacity: 1;
   color: rgb(0 217 255 / var(--tw-text-opacity, 1));
@@ -1113,9 +1235,23 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 0 85 / var(--tw-text-opacity, 1));
 }
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.text-white\\/20 {
+  color: rgb(255 255 255 / 0.2);
+}
+.text-white\\/40 {
+  color: rgb(255 255 255 / 0.4);
 }
 .text-white\\/50 {
   color: rgb(255 255 255 / 0.5);
@@ -1144,6 +1280,15 @@ video {
 .placeholder-white\\/40::placeholder {
   color: rgb(255 255 255 / 0.4);
 }
+.placeholder-white\\/50::-moz-placeholder {
+  color: rgb(255 255 255 / 0.5);
+}
+.placeholder-white\\/50::placeholder {
+  color: rgb(255 255 255 / 0.5);
+}
+.opacity-0 {
+  opacity: 0;
+}
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -1170,12 +1315,21 @@ video {
   --tw-backdrop-blur: blur(12px);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
 .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1228,6 +1382,10 @@ video {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+.hover\\:border-creal-accent\\/50:hover {
+  border-color: rgb(0 217 255 / 0.5);
+}
+
 .hover\\:bg-cyan-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(6 182 212 / var(--tw-bg-opacity, 1));
@@ -1236,6 +1394,19 @@ video {
 .hover\\:bg-cyan-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(8 145 178 / var(--tw-bg-opacity, 1));
+}
+
+.hover\\:bg-red-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+}
+
+.hover\\:bg-red-500\\/20:hover {
+  background-color: rgb(239 68 68 / 0.2);
+}
+
+.hover\\:bg-white\\/10:hover {
+  background-color: rgb(255 255 255 / 0.1);
 }
 
 .hover\\:bg-white\\/20:hover {
@@ -1248,6 +1419,19 @@ video {
 
 .hover\\:bg-white\\/35:hover {
   background-color: rgb(255 255 255 / 0.35);
+}
+
+.hover\\:bg-white\\/\\[0\\.08\\]:hover {
+  background-color: rgb(255 255 255 / 0.08);
+}
+
+.hover\\:bg-white\\/\\[0\\.1\\]:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.hover\\:text-red-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
 }
 
 .hover\\:text-white:hover {
@@ -1264,9 +1448,29 @@ video {
   border-color: rgb(0 217 255 / var(--tw-border-opacity, 1));
 }
 
+.focus\\:border-creal-accent:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 217 255 / var(--tw-border-opacity, 1));
+}
+
 .focus\\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.focus\\:ring-1:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\\:ring-creal-accent:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(0 217 255 / var(--tw-ring-opacity, 1));
+}
+
+.disabled\\:cursor-default:disabled {
+  cursor: default;
 }
 
 .disabled\\:cursor-not-allowed:disabled {
@@ -1281,21 +1485,26 @@ video {
   opacity: 0.7;
 }
 
+.disabled\\:hover\\:bg-transparent:hover:disabled {
+  background-color: transparent;
+}
+
+.group:hover .group-hover\\:text-creal-accent {
+  --tw-text-opacity: 1;
+  color: rgb(0 217 255 / var(--tw-text-opacity, 1));
+}
+
+.group:hover .group-hover\\:opacity-100 {
+  opacity: 1;
+}
+
 @media (min-width: 768px) {
 
-<<<<<<< Updated upstream
   .md\\:p-4 {
     padding: 1rem;
   }
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/globals.css"],"names":[],"mappings":"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","sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');\n\n/* CReal overlay - isolated styling */\n.creal-overlay {\n  font-family: 'Inter', system-ui, sans-serif;\n  box-sizing: border-box;\n}\n.creal-overlay * {\n  box-sizing: border-box;\n}\n\n.creal-card {\n  font-family: 'Inter', system-ui, sans-serif;\n}\n\n.creal-btn-minimize {\n  font-family: 'Inter', system-ui, sans-serif;\n  cursor: pointer;\n  transition: transform 0.25s ease, box-shadow 0.25s ease;\n}\n.creal-btn-minimize:hover {\n  transform: scale(1.22);\n  box-shadow: 0 0 28px rgba(0, 217, 255, 0.45);\n}\n\n.creal-hover-btn {\n  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;\n}\n.creal-hover-btn:hover:not(:disabled) {\n  transform: scale(1.05);\n}\n\n.creal-metric-row:hover {\n  transform: scale(1.02);\n  background-color: rgba(255, 255, 255, 0.08);\n}\n"],"sourceRoot":""}]);
-=======
-  .md\\:p-5 {
-    padding: 1.25rem;
-  }
-}
-`, "",{"version":3,"sources":["webpack://./src/styles/globals.css"],"names":[],"mappings":"AAAA;EAAA,wBAAc;EAAd,wBAAc;EAAd,mBAAc;EAAd,mBAAc;EAAd,cAAc;EAAd,cAAc;EAAd,cAAc;EAAd,eAAc;EAAd,eAAc;EAAd,aAAc;EAAd,aAAc;EAAd,kBAAc;EAAd,sCAAc;EAAd,8BAAc;EAAd,6BAAc;EAAd,4BAAc;EAAd,eAAc;EAAd,oBAAc;EAAd,sBAAc;EAAd,uBAAc;EAAd,wBAAc;EAAd,kBAAc;EAAd,2BAAc;EAAd,4BAAc;EAAd,sCAAc;EAAd,kCAAc;EAAd,2BAAc;EAAd,sBAAc;EAAd,8BAAc;EAAd,YAAc;EAAd,kBAAc;EAAd,gBAAc;EAAd,iBAAc;EAAd,kBAAc;EAAd,cAAc;EAAd,gBAAc;EAAd,aAAc;EAAd,mBAAc;EAAd,qBAAc;EAAd,2BAAc;EAAd,yBAAc;EAAd,0BAAc;EAAd,2BAAc;EAAd,uBAAc;EAAd,wBAAc;EAAd,yBAAc;EAAd,sBAAc;EAAd,oBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd;AAAc;;AAAd;EAAA,wBAAc;EAAd,wBAAc;EAAd,mBAAc;EAAd,mBAAc;EAAd,cAAc;EAAd,cAAc;EAAd,cAAc;EAAd,eAAc;EAAd,eAAc;EAAd,aAAc;EAAd,aAAc;EAAd,kBAAc;EAAd,sCAAc;EAAd,8BAAc;EAAd,6BAAc;EAAd,4BAAc;EAAd,eAAc;EAAd,oBAAc;EAAd,sBAAc;EAAd,uBAAc;EAAd,wBAAc;EAAd,kBAAc;EAAd,2BAAc;EAAd,4BAAc;EAAd,sCAAc;EAAd,kCAAc;EAAd,2BAAc;EAAd,sBAAc;EAAd,8BAAc;EAAd,YAAc;EAAd,kBAAc;EAAd,gBAAc;EAAd,iBAAc;EAAd,kBAAc;EAAd,cAAc;EAAd,gBAAc;EAAd,aAAc;EAAd,mBAAc;EAAd,qBAAc;EAAd,2BAAc;EAAd,yBAAc;EAAd,0BAAc;EAAd,2BAAc;EAAd,uBAAc;EAAd,wBAAc;EAAd,yBAAc;EAAd,sBAAc;EAAd,oBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd;AAAc,CAAd;;CAAc,CAAd;;;CAAc;;AAAd;;;EAAA,sBAAc,EAAd,MAAc;EAAd,eAAc,EAAd,MAAc;EAAd,mBAAc,EAAd,MAAc;EAAd,qBAAc,EAAd,MAAc;AAAA;;AAAd;;EAAA,gBAAc;AAAA;;AAAd;;;;;;;;CAAc;;AAAd;;EAAA,gBAAc,EAAd,MAAc;EAAd,8BAAc,EAAd,MAAc;EAAd,gBAAc,EAAd,MAAc;EAAd,cAAc;KAAd,WAAc,EAAd,MAAc;EAAd,+HAAc,EAAd,MAAc;EAAd,6BAAc,EAAd,MAAc;EAAd,+BAAc,EAAd,MAAc;EAAd,wCAAc,EAAd,MAAc;AAAA;;AAAd;;;CAAc;;AAAd;EAAA,SAAc,EAAd,MAAc;EAAd,oBAAc,EAAd,MAAc;AAAA;;AAAd;;;;CAAc;;AAAd;EAAA,SAAc,EAAd,MAAc;EAAd,cAAc,EAAd,MAAc;EAAd,qBAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,yCAAc;UAAd,iCAAc;AAAA;;AAAd;;CAAc;;AAAd;;;;;;EAAA,kBAAc;EAAd,oBAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,cAAc;EAAd,wBAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,mBAAc;AAAA;;AAAd;;;;;CAAc;;AAAd;;;;EAAA,wCAAc,EAAd,MAAc;EAAd,6BAAc,EAAd,MAAc;EAAd,+BAAc,EAAd,MAAc;EAAd,cAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,cAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,cAAc;EAAd,cAAc;EAAd,kBAAc;EAAd,wBAAc;AAAA;;AAAd;EAAA,eAAc;AAAA;;AAAd;EAAA,WAAc;AAAA;;AAAd;;;;CAAc;;AAAd;EAAA,cAAc,EAAd,MAAc;EAAd,qBAAc,EAAd,MAAc;EAAd,yBAAc,EAAd,MAAc;AAAA;;AAAd;;;;CAAc;;AAAd;;;;;EAAA,oBAAc,EAAd,MAAc;EAAd,8BAAc,EAAd,MAAc;EAAd,gCAAc,EAAd,MAAc;EAAd,eAAc,EAAd,MAAc;EAAd,oBAAc,EAAd,MAAc;EAAd,oBAAc,EAAd,MAAc;EAAd,uBAAc,EAAd,MAAc;EAAd,cAAc,EAAd,MAAc;EAAd,SAAc,EAAd,MAAc;EAAd,UAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,oBAAc;AAAA;;AAAd;;;CAAc;;AAAd;;;;EAAA,0BAAc,EAAd,MAAc;EAAd,6BAAc,EAAd,MAAc;EAAd,sBAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,aAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,gBAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,wBAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,YAAc;AAAA;;AAAd;;;CAAc;;AAAd;EAAA,6BAAc,EAAd,MAAc;EAAd,oBAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,wBAAc;AAAA;;AAAd;;;CAAc;;AAAd;EAAA,0BAAc,EAAd,MAAc;EAAd,aAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,kBAAc;AAAA;;AAAd;;CAAc;;AAAd;;;;;;;;;;;;;EAAA,SAAc;AAAA;;AAAd;EAAA,SAAc;EAAd,UAAc;AAAA;;AAAd;EAAA,UAAc;AAAA;;AAAd;;;EAAA,gBAAc;EAAd,SAAc;EAAd,UAAc;AAAA;;AAAd;;CAAc;AAAd;EAAA,UAAc;AAAA;;AAAd;;CAAc;;AAAd;EAAA,gBAAc;AAAA;;AAAd;;;CAAc;;AAAd;EAAA,UAAc,EAAd,MAAc;EAAd,cAAc,EAAd,MAAc;AAAA;;AAAd;;EAAA,UAAc,EAAd,MAAc;EAAd,cAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,eAAc;AAAA;;AAAd;;CAAc;AAAd;EAAA,eAAc;AAAA;;AAAd;;;;CAAc;;AAAd;;;;;;;;EAAA,cAAc,EAAd,MAAc;EAAd,sBAAc,EAAd,MAAc;AAAA;;AAAd;;CAAc;;AAAd;;EAAA,eAAc;EAAd,YAAc;AAAA;;AAAd,wEAAc;AAAd;EAAA,aAAc;AAAA;AACd;EAAA;AAAoB;AAApB;EAAA;AAAoB;AAApB;;EAAA;IAAA;EAAoB;;EAApB;IAAA;EAAoB;AAAA;AAApB;;EAAA;IAAA;EAAoB;;EAApB;IAAA;EAAoB;AAAA;AAApB;;EAAA;IAAA;EAAoB;;EAApB;IAAA;EAAoB;AAAA;AAApB;;EAAA;IAAA;EAAoB;;EAApB;IAAA;EAAoB;AAAA;AAApB;;EAAA;IAAA;EAAoB;;EAApB;IAAA;EAAoB;AAAA;AACpB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;;EAAA;IAAA;EAAmB;AAAA;AAAnB;EAAA;AAAmB;AAAnB;;EAAA;IAAA;EAAmB;AAAA;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,uBAAmB;EAAnB,8DAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,gBAAmB;EAAnB,uBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,sBAAmB;EAAnB;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,qBAAmB;EAAnB;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA,qBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,iBAAmB;EAAnB;AAAmB;AAAnB;EAAA,mBAAmB;EAAnB;AAAmB;AAAnB;EAAA,qBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,qBAAmB;EAAnB;AAAmB;AAAnB;EAAA,iBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,eAAmB;EAAnB;AAAmB;AAAnB;EAAA,mBAAmB;EAAnB;AAAmB;AAAnB;EAAA,mBAAmB;EAAnB;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA,kBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,kCAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,gDAAmB;EAAnB,6DAAmB;EAAnB;AAAmB;AAAnB;EAAA,+EAAmB;EAAnB,mGAAmB;EAAnB;AAAmB;AAAnB;EAAA,4CAAmB;EAAnB,oDAAmB;EAAnB;AAAmB;AAAnB;EAAA,gFAAmB;EAAnB,oGAAmB;EAAnB;AAAmB;AAAnB;EAAA,oBAAmB;EAAnB;AAAmB;AAAnB;EAAA;AAAmB;AAAnB;EAAA,8BAAmB;EAAnB;AAAmB;AAAnB;EAAA,6BAAmB;EAAnB;AAAmB;AAAnB;EAAA,8BAAmB;EAAnB;AAAmB;AAAnB;EAAA,wJAAmB;EAAnB,wDAAmB;EAAnB;AAAmB;AAAnB;EAAA,+FAAmB;EAAnB,wDAAmB;EAAnB;AAAmB;;AAInB,qCAAqC;AACrC;EACE,2CAA2C;EAC3C,sBAAsB;AACxB;AACA;EACE,sBAAsB;AACxB;;AAEA;EACE,2CAA2C;AAC7C;;AAEA;EACE,2CAA2C;EAC3C,eAAe;EACf,+BAA+B;AACjC;AACA;EACE,sBAAsB;AACxB;AA1BA;EAAA,kBA2BA;EA3BA;AA2BA;AA3BA;EAAA,kBA2BA;EA3BA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA,oBA2BA;EA3BA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA,sBA2BA;EA3BA;AA2BA;AA3BA;EAAA,8BA2BA;EA3BA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;EAAA;AA2BA;AA3BA;;EAAA;IAAA;EA2BA;AAAA","sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');\n\n/* CReal overlay - isolated styling */\n.creal-overlay {\n  font-family: 'Inter', system-ui, sans-serif;\n  box-sizing: border-box;\n}\n.creal-overlay * {\n  box-sizing: border-box;\n}\n\n.creal-card {\n  font-family: 'Inter', system-ui, sans-serif;\n}\n\n.creal-btn-minimize {\n  font-family: 'Inter', system-ui, sans-serif;\n  cursor: pointer;\n  transition: transform 0.2s ease;\n}\n.creal-btn-minimize:hover {\n  transform: scale(1.08);\n}\n"],"sourceRoot":""}]);
->>>>>>> Stashed changes
+`, "",{"version":3,"sources":["webpack://./src/styles/globals.css"],"names":[],"mappings":"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","sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');\n\n/* CReal overlay - isolated styling */\n.creal-overlay {\n  font-family: 'Inter', system-ui, sans-serif;\n  box-sizing: border-box;\n}\n.creal-overlay * {\n  box-sizing: border-box;\n}\n\n.creal-card {\n  font-family: 'Inter', system-ui, sans-serif;\n}\n\n.creal-btn-minimize {\n  font-family: 'Inter', system-ui, sans-serif;\n  cursor: pointer;\n  transition: transform 0.25s ease, box-shadow 0.25s ease;\n}\n.creal-btn-minimize:hover {\n  transform: scale(1.22);\n  box-shadow: 0 0 28px rgba(0, 217, 255, 0.45);\n}\n\n.creal-hover-btn {\n  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;\n}\n.creal-hover-btn:hover:not(:disabled) {\n  transform: scale(1.05);\n}\n\n.creal-metric-row:hover {\n  transform: scale(1.02);\n  background-color: rgba(255, 255, 255, 0.08);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36528,6 +36737,167 @@ module.exports = styleTagTransform;
 
 /***/ },
 
+/***/ "./src/content/AuthorProfile.tsx"
+/*!***************************************!*\
+  !*** ./src/content/AuthorProfile.tsx ***!
+  \***************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AuthorProfile: () => (/* binding */ AuthorProfile)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs");
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs");
+
+/**
+ * CReal - Author Profile Component
+ * Displays author background information including bio, articles, and professional details
+ */
+
+
+function AuthorProfile({ authorName, authorImageUrl, onClose }) {
+    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+    const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const [authorInfo, setAuthorInfo] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+        fetchAuthorInfo();
+    }, [authorName]);
+    const fetchAuthorInfo = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await chrome.runtime.sendMessage({
+                type: 'FETCH_AUTHOR_INFO',
+                payload: { authorName },
+            });
+            if (response?.error) {
+                throw new Error(response.error);
+            }
+            setAuthorInfo(response.authorInfo);
+        }
+        catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch author information');
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, className: "fixed inset-0 z-[2147483648] flex items-center justify-center bg-black/60 backdrop-blur-sm", onClick: onClose, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { scale: 0.9, opacity: 0 }, animate: { scale: 1, opacity: 1 }, exit: { scale: 0.9, opacity: 0 }, onClick: (e) => e.stopPropagation(), className: "relative w-full max-w-2xl max-h-[80vh] overflow-hidden rounded-2xl border border-white/20 bg-black/95 shadow-2xl backdrop-blur-xl", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between border-b border-white/20 px-6 py-4 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", { className: "text-xl font-bold text-white", children: "Author Profile" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: onClose, className: "rounded-lg p-2 text-white/70 hover:bg-white/10 hover:text-white transition-colors", "aria-label": "Close", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "6", y1: "6", x2: "18", y2: "18" })] }) })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "overflow-y-auto max-h-[calc(80vh-80px)] p-6", children: [loading && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center py-12", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent mb-4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-white/70", children: "Loading author information..." })] })), error && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-6", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base font-medium text-creal-danger mb-2", children: error }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: fetchAuthorInfo, className: "mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35 transition-colors", children: "Retry" })] })), !loading && !error && authorInfo && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "space-y-6", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-start gap-4", children: [(authorImageUrl || authorInfo.imageUrl) ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: authorImageUrl || authorInfo.imageUrl, alt: authorName, className: "h-20 w-20 shrink-0 rounded-full object-cover border-2 border-white/20 bg-white/10" })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-20 w-20 shrink-0 rounded-full bg-gradient-to-br from-creal-accent to-cyan-600 flex items-center justify-center border-2 border-white/20", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-2xl font-bold text-white", children: authorName.charAt(0).toUpperCase() }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex-1 min-w-0", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", { className: "text-2xl font-bold text-white mb-1", children: authorName }), authorInfo.occupation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm text-creal-accent font-medium mb-1", children: authorInfo.occupation })), authorInfo.age && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { className: "text-sm text-white/50", children: ["Age: ", authorInfo.age] }))] })] }), authorInfo.bio && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-lg border border-white/10 bg-white/[0.06] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h4", { className: "text-sm font-semibold uppercase tracking-wider text-white/50 mb-2", children: "Biography" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm leading-relaxed text-white/80", children: authorInfo.bio })] })), authorInfo.socialLinks && authorInfo.socialLinks.length > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-lg border border-white/10 bg-white/[0.06] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h4", { className: "text-sm font-semibold uppercase tracking-wider text-white/50 mb-3", children: "Social & Professional Links" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "flex flex-wrap gap-2", children: authorInfo.socialLinks.map((link, idx) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", { href: link.url, target: "_blank", rel: "noopener noreferrer", className: "inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm text-white/90 hover:bg-white/20 transition-colors border border-white/10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: link.platform }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("polyline", { points: "15 3 21 3 21 9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "10", y1: "14", x2: "21", y2: "3" })] })] }, idx))) })] })), authorInfo.articles && authorInfo.articles.length > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-lg border border-white/10 bg-white/[0.06] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h4", { className: "text-sm font-semibold uppercase tracking-wider text-white/50 mb-3", children: ["Other Articles (", authorInfo.articles.length, ")"] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-3 max-h-64 overflow-y-auto", children: authorInfo.articles.map((article, idx) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", { href: article.url, target: "_blank", rel: "noopener noreferrer", className: "block rounded-lg bg-white/[0.04] p-3 hover:bg-white/[0.08] transition-colors border border-white/5", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm font-medium text-white/90 mb-1 line-clamp-2", children: article.title }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2 text-xs text-white/50", children: [article.source && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: article.source }), article.source && article.date && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "\u2022" }), article.date && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: article.date })] })] }, idx))) })] })), !authorInfo.bio && !authorInfo.occupation && !authorInfo.articles?.length && !authorInfo.socialLinks?.length && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "rounded-lg border border-white/10 bg-white/[0.06] p-6 text-center", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-white/60", children: "Limited information available for this author." }) }))] }))] })] }) }) }));
+}
+
+
+/***/ },
+
+/***/ "./src/content/HistoryView.tsx"
+/*!*************************************!*\
+  !*** ./src/content/HistoryView.tsx ***!
+  \*************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HistoryView: () => (/* binding */ HistoryView)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs");
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs");
+
+/**
+ * CReal - History View Component
+ * Displays previously analyzed articles with search and delete functionality
+ */
+
+
+function HistoryView({ onSelectArticle, onClose }) {
+    const [history, setHistory] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+    const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('');
+    const [showClearConfirm, setShowClearConfirm] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+        loadHistory();
+    }, []);
+    const loadHistory = async () => {
+        setLoading(true);
+        try {
+            const response = await chrome.runtime.sendMessage({ type: 'GET_ARTICLE_HISTORY' });
+            setHistory(response || []);
+        }
+        catch (error) {
+            console.error('[CReal] Failed to load history:', error);
+            setHistory([]);
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+    const handleDelete = async (url, event) => {
+        event.stopPropagation();
+        try {
+            await chrome.runtime.sendMessage({ type: 'DELETE_ARTICLE', payload: url });
+            setHistory((prev) => prev.filter((item) => item.url !== url));
+        }
+        catch (error) {
+            console.error('[CReal] Failed to delete article:', error);
+        }
+    };
+    const handleClearAll = async () => {
+        try {
+            await chrome.runtime.sendMessage({ type: 'CLEAR_HISTORY' });
+            setHistory([]);
+            setShowClearConfirm(false);
+        }
+        catch (error) {
+            console.error('[CReal] Failed to clear history:', error);
+        }
+    };
+    const filteredHistory = history.filter((item) => {
+        const query = searchQuery.toLowerCase();
+        return (item.title.toLowerCase().includes(query) ||
+            item.url.toLowerCase().includes(query) ||
+            item.author?.toLowerCase().includes(query) ||
+            item.source?.toLowerCase().includes(query));
+    });
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diffMs = now.getTime() - date.getTime();
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        if (diffMins < 60)
+            return `${diffMins}m ago`;
+        if (diffHours < 24)
+            return `${diffHours}h ago`;
+        if (diffDays < 7)
+            return `${diffDays}d ago`;
+        return date.toLocaleDateString();
+    };
+    const getBiasLabel = (value) => {
+        if (value < -30)
+            return 'Left';
+        if (value > 30)
+            return 'Right';
+        return 'Center';
+    };
+    const getBiasColor = (value) => {
+        if (value < -30)
+            return 'text-blue-400';
+        if (value > 30)
+            return 'text-red-400';
+        return 'text-gray-400';
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full flex-col", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-b border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mb-3", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", { className: "text-lg font-bold text-white", children: "Article History" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2", children: [history.length > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setShowClearConfirm(true), className: "text-xs text-white/60 hover:text-red-400 transition-colors", children: "Clear all" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: onClose, className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Back" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "text", placeholder: "Search by title, URL, author, or source...", value: searchQuery, onChange: (e) => setSearchQuery(e.target.value), className: "w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/50 focus:border-creal-accent focus:outline-none focus:ring-1 focus:ring-creal-accent" })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { children: showClearConfirm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, className: "absolute inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-sm", onClick: () => setShowClearConfirm(false), children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { scale: 0.9 }, animate: { scale: 1 }, exit: { scale: 0.9 }, onClick: (e) => e.stopPropagation(), className: "rounded-xl border border-white/20 bg-black/95 p-6 max-w-sm mx-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", { className: "text-lg font-bold text-white mb-2", children: "Clear all history?" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { className: "text-sm text-white/70 mb-4", children: ["This will permanently delete all ", history.length, " analyzed articles. This action cannot be undone."] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex gap-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setShowClearConfirm(false), className: "flex-1 rounded-lg bg-white/15 px-4 py-2 text-sm text-white hover:bg-white/25", children: "Cancel" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: handleClearAll, className: "flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-500", children: "Clear all" })] })] }) })) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "flex-1 overflow-y-auto p-4", children: loading ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center py-10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-4 text-sm text-white/70", children: "Loading history..." })] })) : filteredHistory.length === 0 ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center py-10 text-center", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-16 w-16 text-white/20 mb-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base text-white/70", children: searchQuery ? 'No articles match your search' : 'No analyzed articles yet' }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-1 text-sm text-white/50", children: searchQuery ? 'Try a different search term' : 'Analyze an article to get started' })] })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-2", children: filteredHistory.map((item, index) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: index * 0.03 }, onClick: () => onSelectArticle(item), className: "group cursor-pointer rounded-lg border border-white/10 bg-white/[0.06] p-3 transition-all hover:border-creal-accent/50 hover:bg-white/[0.1]", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-start justify-between gap-3", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", { className: "text-sm font-semibold text-white line-clamp-2 mb-1", children: item.title }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-wrap items-center gap-2 text-xs text-white/50 mb-2", children: [item.source && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: item.source }), item.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "\u2022" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: item.author })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "\u2022" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: formatDate(item.timestamp) })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-wrap items-center gap-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${getBiasColor(item.bias.left_right)} bg-white/10`, children: getBiasLabel(item.bias.left_right) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-white/70", children: [item.bias.objectivity, "% objective"] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-white/70", children: [item.bias.confidence, "% confidence"] })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: (e) => handleDelete(item.url, e), className: "shrink-0 rounded-lg p-2 text-white/40 opacity-0 transition-all hover:bg-red-500/20 hover:text-red-400 group-hover:opacity-100", title: "Delete", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" }) }) })] }) }, item.url))) })) }), !loading && filteredHistory.length > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "shrink-0 border-t border-white/20 px-4 py-2 bg-white/[0.03]", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { className: "text-xs text-white/50", children: ["Showing ", filteredHistory.length, " of ", history.length, " article", history.length !== 1 ? 's' : ''] }) }))] }));
+}
+
+
+/***/ },
+
 /***/ "./src/content/Overlay2D.tsx"
 /*!***********************************!*\
   !*** ./src/content/Overlay2D.tsx ***!
@@ -36544,6 +36914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs");
 /* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs");
 /* harmony import */ var _lib_utils_article_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/utils/article-parser */ "./src/lib/utils/article-parser.ts");
+/* harmony import */ var _HistoryView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HistoryView */ "./src/content/HistoryView.tsx");
+/* harmony import */ var _AuthorProfile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AuthorProfile */ "./src/content/AuthorProfile.tsx");
 
 /**
  * CReal - Article insights overlay
@@ -36552,13 +36924,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 function Overlay2D() {
     const [viewMode, setViewMode] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('minimized');
+    const [tabMode, setTabMode] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('analysis');
     const [analysis, setAnalysis] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({ status: 'idle' });
     const [article, setArticle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
     const [videoState, setVideoState] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('idle');
     const [videoUrl, setVideoUrl] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
     const [videoError, setVideoError] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const [showAuthorProfile, setShowAuthorProfile] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
     const runAnalysis = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(async () => {
         const extracted = (0,_lib_utils_article_parser__WEBPACK_IMPORTED_MODULE_4__.extractArticle)();
         if (!extracted) {
@@ -36583,6 +36959,9 @@ function Overlay2D() {
                 payload: {
                     text: extracted.text,
                     url: extracted.url,
+                    title: extracted.title,
+                    author: extracted.author,
+                    source: extracted.source,
                 },
             });
             if (response?.error) {
@@ -36620,8 +36999,23 @@ function Overlay2D() {
     }, [runAnalysis]);
     const openOverlay = () => {
         setViewMode('expanded');
+        setTabMode('analysis');
         if (analysis.status === 'idle')
             runAnalysis();
+    };
+    const handleSelectHistoryArticle = (record) => {
+        setArticle({
+            title: record.title,
+            url: record.url,
+            author: record.author,
+            source: record.source,
+            authorImageUrl: undefined,
+        });
+        setAnalysis({
+            status: 'success',
+            bias: record.bias,
+        });
+        setTabMode('analysis');
     };
     const runGenerateVideo = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(async () => {
         const extracted = (0,_lib_utils_article_parser__WEBPACK_IMPORTED_MODULE_4__.extractArticle)();
@@ -36670,13 +37064,23 @@ function Overlay2D() {
                 URL.revokeObjectURL(videoUrl);
         };
     }, [videoUrl]);
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "creal-overlay fixed bottom-6 right-6 z-[2147483647] font-sans", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { mode: "wait", children: [viewMode === 'minimized' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.button, { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.8 }, onClick: openOverlay, className: "creal-btn-minimize flex h-20 w-20 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25", title: "CReal - Article insights", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "36", height: "36", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "12", cy: "12", r: "10" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M12 6v6l4 2" })] }) }, "minimized")), viewMode === 'expanded' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.2 }, className: "fixed left-[12.5vw] top-[12.5vh] z-[2147483647] flex w-[75vw] h-[75vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xl font-bold tracking-tight text-creal-accent", children: "CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => runAnalysis(), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Re-analyze" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setViewMode('minimized'), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Close" })] })] }), analysis.status === 'success' && article && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-creal-accent/20 px-2.5 py-1 text-xs font-medium text-creal-accent border border-creal-accent/40", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" }) }), "Insights powered by AI"] }), (article.author || article.authorImageUrl) && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2 min-w-0", children: [article.authorImageUrl ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: article.authorImageUrl, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : article.author ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-white/60 text-xs font-medium", children: "?" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0", children: [article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium text-white/90 truncate", children: article.author })), article.source && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-[11px] text-white/50 truncate", children: article.source }))] })] })), article.source && !article.author && !article.authorImageUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-[11px] text-white/50", children: article.source }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4", children: [analysis.status === 'idle' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full min-h-[220px] flex-col items-center justify-center text-center", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mb-4 text-base text-white/90", children: article ? 'Click below to analyze this article' : 'No article detected on this page.' }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, disabled: !article, className: "creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg", children: "Analyze article" })] })), analysis.status === 'loading' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center gap-4 py-10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base text-white/80", children: "Analyzing article..." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "grid w-full max-w-sm grid-cols-3 gap-2", children: [1, 2, 3, 4, 5, 6].map((i) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-16 rounded-lg bg-white/10 animate-pulse" }, i))) })] })), analysis.status === 'error' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base font-medium text-creal-danger", children: analysis.error }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-1.5 text-xs text-white/70", children: "Add your Gemini API key in the extension popup." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, className: "creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35", children: "Retry" })] })), analysis.status === 'success' && analysis.bias && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ArticleInsightsDisplay, { bias: analysis.bias, className: "min-h-0 flex-1 flex" }))] }), videoState === 'success' && videoUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5", children: "Short clip (<15s)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("video", { src: videoUrl, controls: true, className: "w-full max-h-40 rounded-lg border border-white/10 bg-black/50", preload: "metadata" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", { href: videoUrl, download: "creal-article-clip.mp4", className: "mt-1.5 inline-block text-sm text-creal-accent hover:underline", children: "Download clip" })] })), videoState === 'error' && videoError && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "shrink-0 border-t border-white/20 px-4 py-2 bg-creal-danger/10", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm text-creal-danger", children: videoError }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs text-white/50", children: "Article insights \u00B7 CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { type: "button", onClick: runGenerateVideo, disabled: videoState === 'generating', title: analysis.status !== 'success'
-                                        ? 'Analyze the article first to generate a short clip'
-                                        : undefined, className: "creal-hover-btn rounded-xl bg-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/35 border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed", children: videoState === 'generating'
-                                        ? 'Generating clip…'
-                                        : analysis.status !== 'success'
-                                            ? 'Generate video (analyze first)'
-                                            : 'Generate video' })] })] }, "expanded"))] }) }));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "creal-overlay fixed bottom-6 right-6 z-[2147483647] font-sans", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.AnimatePresence, { mode: "wait", children: [viewMode === 'minimized' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.button, { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.8 }, onClick: openOverlay, className: "creal-btn-minimize flex h-20 w-20 items-center justify-center rounded-2xl bg-black/95 text-creal-accent shadow-neon backdrop-blur-glass border border-white/25", title: "CReal - Article insights", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "36", height: "36", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "12", cy: "12", r: "10" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M12 6v6l4 2" })] }) }, "minimized")), viewMode === 'expanded' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.2 }, className: "fixed left-[12.5vw] top-[12.5vh] z-[2147483647] flex w-[75vw] h-[75vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xl font-bold tracking-tight text-creal-accent", children: "CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex gap-1 rounded-lg bg-white/10 p-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('analysis'), className: `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'analysis'
+                                                                ? 'bg-creal-accent text-black'
+                                                                : 'text-white/70 hover:text-white'}`, children: "Analysis" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setTabMode('history'), className: `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'history'
+                                                                ? 'bg-creal-accent text-black'
+                                                                : 'text-white/70 hover:text-white'}`, children: "History" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center gap-2", children: [tabMode === 'analysis' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => runAnalysis(), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Re-analyze" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: () => setViewMode('minimized'), className: "creal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25", children: "Close" })] })] }), analysis.status === 'success' && article && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-creal-accent/20 px-2.5 py-1 text-xs font-medium text-creal-accent border border-creal-accent/40", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" }) }), "Insights powered by AI"] }), (article.author || article.authorImageUrl) && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", { onClick: (e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                if (article.author) {
+                                                    setShowAuthorProfile(true);
+                                                }
+                                            }, disabled: !article.author, className: "flex items-center gap-2 min-w-0 rounded-lg px-2 py-1 -ml-2 hover:bg-white/10 transition-colors disabled:cursor-default disabled:hover:bg-transparent group cursor-pointer", title: article.author ? `View ${article.author}'s profile` : undefined, children: [article.authorImageUrl ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: article.authorImageUrl, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : article.author ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { src: `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`, alt: "", className: "h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10" })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-white/60 text-xs font-medium", children: "?" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex items-center gap-1.5", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0", children: [article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium text-white/90 truncate group-hover:text-creal-accent transition-colors", children: article.author })), article.source && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-[11px] text-white/50 truncate", children: article.source }))] }), article.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "shrink-0 text-white/40 group-hover:text-creal-accent transition-colors", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("polyline", { points: "15 3 21 3 21 9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("line", { x1: "10", y1: "14", x2: "21", y2: "3" })] }))] })] })), article.source && !article.author && !article.authorImageUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-[11px] text-white/50", children: article.source }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col", children: tabMode === 'history' ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HistoryView__WEBPACK_IMPORTED_MODULE_5__.HistoryView, { onSelectArticle: handleSelectHistoryArticle, onClose: () => setTabMode('analysis') })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4", children: [analysis.status === 'idle' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex h-full min-h-[220px] flex-col items-center justify-center text-center", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mb-4 text-base text-white/90", children: article ? 'Click below to analyze this article' : 'No article detected on this page.' }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, disabled: !article, className: "creal-hover-btn rounded-xl bg-cyan-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-cyan-500 shadow-lg", children: "Analyze article" })] })), analysis.status === 'loading' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex flex-col items-center justify-center gap-4 py-10", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-12 w-12 animate-spin rounded-full border-4 border-creal-accent/30 border-t-creal-accent" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base text-white/80", children: "Analyzing article..." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "grid w-full max-w-sm grid-cols-3 gap-2", children: [1, 2, 3, 4, 5, 6].map((i) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "h-16 rounded-lg bg-white/10 animate-pulse" }, i))) })] })), analysis.status === 'error' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "rounded-xl border-2 border-creal-danger/50 bg-creal-danger/10 p-4 max-w-lg", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-base font-medium text-creal-danger", children: analysis.error }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "mt-1.5 text-xs text-white/70", children: "Add your Gemini API key in the extension popup." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { onClick: runAnalysis, className: "creal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35", children: "Retry" })] })), analysis.status === 'success' && analysis.bias && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ArticleInsightsDisplay, { bias: analysis.bias, className: "min-h-0 flex-1 flex" }))] })) }), videoState === 'success' && videoUrl && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5", children: "Short clip (<15s)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("video", { src: videoUrl, controls: true, className: "w-full max-h-40 rounded-lg border border-white/10 bg-black/50", preload: "metadata" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", { href: videoUrl, download: "creal-article-clip.mp4", className: "mt-1.5 inline-block text-sm text-creal-accent hover:underline", children: "Download clip" })] })), videoState === 'error' && videoError && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "shrink-0 border-t border-white/20 px-4 py-2 bg-creal-danger/10", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-sm text-creal-danger", children: videoError }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { className: "text-xs text-white/50", children: "Article insights \u00B7 CReal" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", { type: "button", onClick: runGenerateVideo, disabled: videoState === 'generating', title: analysis.status !== 'success'
+                                                ? 'Analyze the article first to generate a short clip'
+                                                : undefined, className: "creal-hover-btn rounded-xl bg-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/35 border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed", children: videoState === 'generating'
+                                                ? 'Generating clip…'
+                                                : analysis.status !== 'success'
+                                                    ? 'Generate video (analyze first)'
+                                                    : 'Generate video' })] })] }, "expanded"))] }) }), showAuthorProfile && article?.author && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AuthorProfile__WEBPACK_IMPORTED_MODULE_6__.AuthorProfile, { authorName: article.author, authorImageUrl: article.authorImageUrl, onClose: () => setShowAuthorProfile(false) }))] }));
 }
 /** Normalize -100..100 to 0..100 for radar */
 function toRadarScale(v) {
@@ -36684,7 +37088,6 @@ function toRadarScale(v) {
 }
 function ArticleInsightsDisplay({ bias, className = '' }) {
     const metrics = [
-        { key: 'left_right', label: 'Left ↔ Right', value: bias.left_right, range: 'bipolar' },
         { key: 'auth_lib', label: 'Auth. ↔ Libertarian', value: bias.auth_lib, range: 'bipolar' },
         { key: 'nat_glob', label: 'National ↔ Global', value: bias.nat_glob, range: 'bipolar' },
         { key: 'objectivity', label: 'Objectivity', value: bias.objectivity, range: '0-100' },
@@ -36705,7 +37108,7 @@ function ArticleInsightsDisplay({ bias, className = '' }) {
         const angle = (i / metrics.length) * 2 * Math.PI - Math.PI / 2;
         return { x2: center + radius * Math.cos(angle), y2: center + radius * Math.sin(angle) };
     });
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: `flex min-h-0 gap-3 ${className}`, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex-1 overflow-y-auto pr-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-1.5", children: metrics.map((m, i) => {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: `flex min-h-0 gap-3 ${className}`, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "min-w-0 flex-1 overflow-y-auto pr-1", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0, y: -10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.4 }, className: "mb-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/[0.08] to-white/[0.04] p-4", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mb-2", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm font-semibold text-white/90", children: "Political Leaning" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-xs font-medium tabular-nums text-creal-accent", children: bias.left_right > 0 ? `+${bias.left_right}` : bias.left_right })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "relative h-3 rounded-full bg-white/10 overflow-hidden", children: [bias.left_right < 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${Math.abs(bias.left_right) / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute right-1/2 h-full bg-gradient-to-r from-blue-500 to-blue-400", style: { marginRight: 0 } })), bias.left_right > 0 && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { width: 0 }, animate: { width: `${bias.left_right / 2}%` }, transition: { duration: 0.6, delay: 0.2 }, className: "absolute left-1/2 h-full bg-gradient-to-r from-red-400 to-red-500" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "absolute left-1/2 top-0 h-full w-0.5 bg-white/40 -ml-px" })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "flex items-center justify-between mt-1.5 text-[10px] text-white/50", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Left" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Center" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Right" })] })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "space-y-1.5", children: metrics.map((m, i) => {
                             const isBipolar = m.range === 'bipolar';
                             const displayVal = isBipolar ? (m.value > 0 ? '+' : '') + m.value : `${m.value}%`;
                             return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: i * 0.03 }, className: "creal-metric-row flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 transition-transform duration-200", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "text-sm text-white/85 truncate pr-2", title: m.label, children: m.label }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "shrink-0 text-sm font-semibold tabular-nums text-white", children: displayVal })] }, m.key));

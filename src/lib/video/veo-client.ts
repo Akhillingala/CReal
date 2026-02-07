@@ -92,37 +92,60 @@ async function pollOperation(
 function getVideoUri(response: Record<string, unknown>): string | null {
   if (!response || typeof response !== 'object') return null;
 
+  // Debug: Log the full response structure
+  console.log('[CReal Veo] Full response:', JSON.stringify(response, null, 2));
+
   // Path 1: generateVideoResponse.generatedSamples[0].video.uri (Gemini REST, camelCase)
   const gen = response.generateVideoResponse as Record<string, unknown> | undefined;
   if (gen && typeof gen === 'object') {
+    console.log('[CReal Veo] Found generateVideoResponse:', JSON.stringify(gen, null, 2));
+
     const samples =
       (gen.generatedSamples as unknown[] | undefined) ??
       (gen.generated_samples as unknown[] | undefined);
-    const firstSample = samples?.[0] as Record<string, unknown> | undefined;
-    if (firstSample && typeof firstSample === 'object') {
-      const video =
-        (firstSample.video as Record<string, unknown> | undefined) ?? firstSample;
-      const uri =
-        (typeof video?.uri === 'string' ? video.uri : null) ??
-        (typeof (video as Record<string, unknown>)?.uri === 'string'
-          ? (video as Record<string, unknown>).uri
-          : null);
-      if (typeof uri === 'string') return uri;
+
+    if (samples && Array.isArray(samples)) {
+      console.log('[CReal Veo] Found samples array, length:', samples.length);
+      const firstSample = samples[0] as Record<string, unknown> | undefined;
+      if (firstSample && typeof firstSample === 'object') {
+        console.log('[CReal Veo] First sample:', JSON.stringify(firstSample, null, 2));
+
+        // Try direct video property
+        const video = firstSample.video as Record<string, unknown> | undefined;
+        if (video && typeof video === 'object') {
+          const uri = video.uri;
+          if (typeof uri === 'string') {
+            console.log('[CReal Veo] Found URI in video.uri:', uri);
+            return uri;
+          }
+        }
+
+        // Try URI directly on sample
+        const directUri = firstSample.uri;
+        if (typeof directUri === 'string') {
+          console.log('[CReal Veo] Found URI directly on sample:', directUri);
+          return directUri;
+        }
+      }
     }
   }
 
   // Path 2: generatedVideos[0].video.uri (SDK-style)
   const generatedVideos = response.generatedVideos as unknown[] | undefined;
-  const firstGen = generatedVideos?.[0] as Record<string, unknown> | undefined;
-  const videoFromGen = firstGen?.video as Record<string, unknown> | undefined;
-  const uri2 = videoFromGen?.uri;
-  if (typeof uri2 === 'string') return uri2;
+  if (generatedVideos && Array.isArray(generatedVideos)) {
+    const firstGen = generatedVideos[0] as Record<string, unknown> | undefined;
+    const videoFromGen = firstGen?.video as Record<string, unknown> | undefined;
+    const uri2 = videoFromGen?.uri;
+    if (typeof uri2 === 'string') return uri2;
+  }
 
   // Path 3: videos[0].gcsUri or videos[0].uri (Vertex REST-style)
   const videos = response.videos as unknown[] | undefined;
-  const firstVideo = videos?.[0] as Record<string, unknown> | undefined;
-  const gcsUri = firstVideo?.gcsUri ?? firstVideo?.uri;
-  if (typeof gcsUri === 'string') return gcsUri;
+  if (videos && Array.isArray(videos)) {
+    const firstVideo = videos[0] as Record<string, unknown> | undefined;
+    const gcsUri = firstVideo?.gcsUri ?? firstVideo?.uri;
+    if (typeof gcsUri === 'string') return gcsUri;
+  }
 
   // Path 4: Deep search inside generateVideoResponse for any array of items with .video.uri
   if (gen && typeof gen === 'object') {
@@ -130,14 +153,21 @@ function getVideoUri(response: Record<string, unknown>): string | null {
       const arr = gen[key] as unknown[] | undefined;
       if (Array.isArray(arr) && arr.length > 0) {
         const first = arr[0] as Record<string, unknown> | undefined;
-        const video = first?.video as Record<string, unknown> | undefined;
-        const u = video?.uri ?? first?.uri;
-        if (typeof u === 'string' && (u.startsWith('http') || u.startsWith('gs://')))
-          return u;
+        if (first && typeof first === 'object') {
+          const video = first.video as Record<string, unknown> | undefined;
+          const u = video?.uri ?? first?.uri;
+          if (typeof u === 'string' && (u.startsWith('http') || u.startsWith('gs://')))
+            return u;
+        }
       }
     }
   }
 
+  // Path 5: Check if response itself has a uri field
+  const topLevelUri = response.uri;
+  if (typeof topLevelUri === 'string') return topLevelUri;
+
+  console.error('[CReal Veo] Could not find video URI in response. Available keys:', Object.keys(response));
   return null;
 }
 
