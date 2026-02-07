@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* CReal overlay - isolated styling */
+.creal-overlay {
+  font-family: 'Inter', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+.creal-overlay * {
+  box-sizing: border-box;
+}
+
+.creal-card {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.creal-btn-minimize {
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.creal-btn-minimize:hover {
+  transform: scale(1.05);
+}
