@@ -10,6 +10,7 @@ import { HistoryView } from './HistoryView';
 import { AuthorProfile } from './AuthorProfile';
 import { CitationsView } from './CitationsView';
 import { DebateCardsView } from './DebateCardsView';
+import { applyPageHighlights, removePageHighlights } from '../lib/utils/highlighter';
 import type { ArticleRecord } from '../lib/storage/types';
 
 interface BiasResult {
@@ -22,6 +23,7 @@ interface BiasResult {
   tone_calm_urgent: number;
   confidence: number;
   reasoning: string;
+  highlights: string[];
 }
 
 interface AnalysisState {
@@ -33,19 +35,16 @@ interface AnalysisState {
 type ViewMode = 'minimized' | 'expanded';
 type TabMode = 'analysis' | 'history' | 'citations' | 'debate-cards';
 
-type VideoState = 'idle' | 'generating' | 'success' | 'error';
 
 export function Overlay2D() {
   const [viewMode, setViewMode] = useState<ViewMode>('minimized');
   const [tabMode, setTabMode] = useState<TabMode>('analysis');
   const [analysis, setAnalysis] = useState<AnalysisState>({ status: 'idle' });
   const [article, setArticle] = useState<ExtractedArticle | null>(null);
-  const [videoState, setVideoState] = useState<VideoState>('idle');
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [videoError, setVideoError] = useState<string | null>(null);
   const [showAuthorProfile, setShowAuthorProfile] = useState(false);
   const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
   const [loadingRelated, setLoadingRelated] = useState(false);
+  const [showPageHighlights, setShowPageHighlights] = useState(false);
 
   const runAnalysis = useCallback(async () => {
     const extracted = extractArticle();
@@ -141,51 +140,14 @@ export function Overlay2D() {
     });
     setTabMode('analysis');
   };
-
-  const runGenerateVideo = useCallback(async () => {
-    const extracted = extractArticle();
-    if (!extracted || analysis.status !== 'success' || !analysis.bias) {
-      setVideoError('Analyze the article first.');
-      setVideoState('error');
-      return;
-    }
-    setVideoState('generating');
-    setVideoError(null);
-    if (videoUrl) {
-      URL.revokeObjectURL(videoUrl);
-      setVideoUrl(null);
-    }
-    try {
-      const response = await chrome.runtime.sendMessage({
-        type: 'GENERATE_VIDEO',
-        payload: {
-          title: extracted.title,
-          excerpt: extracted.excerpt ?? extracted.text.slice(0, 300),
-          reasoning: analysis.bias.reasoning,
-        },
-      });
-      if (response === undefined) {
-        throw new Error('Extension did not respond. Try refreshing the page.');
-      }
-      if (response?.error) throw new Error(response.error);
-      const { videoBase64, mimeType } = response as { videoBase64: string; mimeType: string };
-      if (!videoBase64) throw new Error('No video data returned.');
-      const binary = Uint8Array.from(atob(videoBase64), (c) => c.charCodeAt(0));
-      const blob = new Blob([binary], { type: mimeType || 'video/mp4' });
-      const url = URL.createObjectURL(blob);
-      setVideoUrl(url);
-      setVideoState('success');
-    } catch (err) {
-      setVideoError(err instanceof Error ? err.message : 'Video generation failed.');
-      setVideoState('error');
-    }
-  }, [analysis.status, analysis.bias, videoUrl]);
-
   useEffect(() => {
-    return () => {
-      if (videoUrl) URL.revokeObjectURL(videoUrl);
-    };
-  }, [videoUrl]);
+    if (showPageHighlights && analysis.bias?.highlights) {
+      applyPageHighlights(analysis.bias.highlights);
+    } else {
+      removePageHighlights();
+    }
+    return () => removePageHighlights();
+  }, [showPageHighlights, analysis.bias?.highlights]);
 
   return (
     <>
@@ -475,6 +437,8 @@ export function Overlay2D() {
                             bias={analysis.bias}
                             relatedArticles={relatedArticles}
                             loadingRelated={loadingRelated}
+                            showPageHighlights={showPageHighlights}
+                            onToggleHighlights={setShowPageHighlights}
                             className="min-h-0 flex-1 flex"
                           />
                         )}
@@ -484,53 +448,9 @@ export function Overlay2D() {
                 )}
               </div>
 
-              {/* Video section: player when success, or inline error */}
-              {videoState === 'success' && videoUrl && (
-                <div className="shrink-0 border-t border-white/20 px-4 py-3 bg-white/[0.03]">
-                  <p className="text-xs font-medium uppercase tracking-wider text-white/50 mb-1.5">
-                    Short clip (&lt;15s)
-                  </p>
-                  <video
-                    src={videoUrl}
-                    controls
-                    className="w-full max-h-40 rounded-lg border border-white/10 bg-black/50"
-                    preload="metadata"
-                  />
-                  <a
-                    href={videoUrl}
-                    download="seereal-article-clip.mp4"
-                    className="mt-1.5 inline-block text-sm text-seereal-accent hover:underline"
-                  >
-                    Download clip
-                  </a>
-                </div>
-              )}
-              {videoState === 'error' && videoError && (
-                <div className="shrink-0 border-t border-white/20 px-4 py-2 bg-seereal-danger/10">
-                  <p className="text-sm text-seereal-danger">{videoError}</p>
-                </div>
-              )}
 
-              {/* Footer with Generate video */}
               <div className="shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]">
                 <p className="text-xs text-white/50">Article insights · SeeReal</p>
-                <button
-                  type="button"
-                  onClick={runGenerateVideo}
-                  disabled={videoState === 'generating'}
-                  title={
-                    analysis.status !== 'success'
-                      ? 'Analyze the article first to generate a short clip'
-                      : undefined
-                  }
-                  className="seereal-hover-btn rounded-xl bg-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/35 border border-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {videoState === 'generating'
-                    ? 'Generating clip…'
-                    : analysis.status !== 'success'
-                      ? 'Generate video (analyze first)'
-                      : 'Generate video'}
-                </button>
               </div>
             </motion.div>
           )}
@@ -609,7 +529,21 @@ function getSourceColor(source: string): { bg: string; text: string } {
 }
 
 
-function ArticleInsightsDisplay({ bias, relatedArticles, loadingRelated, className = '' }: { bias: BiasResult; relatedArticles: any[]; loadingRelated: boolean; className?: string }) {
+function ArticleInsightsDisplay({
+  bias,
+  relatedArticles,
+  loadingRelated,
+  showPageHighlights,
+  onToggleHighlights,
+  className = ''
+}: {
+  bias: BiasResult;
+  relatedArticles: any[];
+  loadingRelated: boolean;
+  showPageHighlights: boolean;
+  onToggleHighlights: (val: boolean) => void;
+  className?: string
+}) {
   const [hoveredMetric, setHoveredMetric] = useState<{ label: string; description: string; x: number; y: number; showAbove: boolean } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -719,11 +653,26 @@ function ArticleInsightsDisplay({ bias, relatedArticles, loadingRelated, classNa
           </div>
         </div>
 
-        <section className="mb-4 rounded-lg border border-white/10 bg-white/[0.06] p-2.5">
-          <h3 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-white/50">
-            AI reasoning
-          </h3>
-          <p className="text-xs leading-relaxed text-white/75">{bias.reasoning}</p>
+        <section className="mb-4 rounded-lg border border-white/10 bg-white/[0.06] p-3">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-white/50">
+              AI reasoning
+            </h3>
+            {bias.highlights && bias.highlights.length > 0 && (
+              <button
+                onClick={() => onToggleHighlights(!showPageHighlights)}
+                className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-tight transition-colors ${showPageHighlights
+                  ? 'bg-seereal-accent text-black'
+                  : 'bg-white/10 text-white/60 hover:bg-white/20'}`}
+              >
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                {showPageHighlights ? 'Highlighting ON' : 'Highlight on page'}
+              </button>
+            )}
+          </div>
+          <p className="text-xs leading-relaxed text-white/90 whitespace-pre-wrap">{bias.reasoning}</p>
         </section>
 
 

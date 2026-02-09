@@ -43,10 +43,6 @@ async function handleMessage(message: { type: string; payload?: unknown }) {
     case 'CLEAR_HISTORY':
       await apiManager.clearHistory();
       return { success: true };
-    case 'GENERATE_VIDEO':
-      return apiManager.generateArticleVideo(
-        message.payload as { title: string; excerpt: string; reasoning: string }
-      );
     case 'FETCH_AUTHOR_INFO':
       return apiManager.fetchAuthorInfo(
         message.payload as { authorName: string }

@@ -13,10 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ApiManager: () => (/* binding */ ApiManager)
 /* harmony export */ });
 /* harmony import */ var _lib_analyzers_bias_detector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/analyzers/bias-detector */ "./src/lib/analyzers/bias-detector.ts");
-/* harmony import */ var _lib_video_video_prompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/video/video-prompt */ "./src/lib/video/video-prompt.ts");
-/* harmony import */ var _lib_video_veo_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/video/veo-client */ "./src/lib/video/veo-client.ts");
-/* harmony import */ var _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/storage/storage-service */ "./src/lib/storage/storage-service.ts");
-/* harmony import */ var _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @google/generative-ai */ "./node_modules/@google/generative-ai/dist/index.mjs");
+/* harmony import */ var _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/storage/storage-service */ "./src/lib/storage/storage-service.ts");
+/* harmony import */ var _google_generative_ai__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @google/generative-ai */ "./node_modules/@google/generative-ai/dist/index.mjs");
 /**
  * SeeReal - API Manager
  * Coordinates AI analysis requests, persistent storage, and video generation
@@ -24,10 +22,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 const biasAnalyzer = new _lib_analyzers_bias_detector__WEBPACK_IMPORTED_MODULE_0__.BiasAnalyzer();
-const storageService = new _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_3__.StorageService();
+const storageService = new _lib_storage_storage_service__WEBPACK_IMPORTED_MODULE_1__.StorageService();
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 class ApiManager {
     async analyzeArticle(payload) {
@@ -91,16 +87,6 @@ class ApiManager {
     async deleteDebateRecord(id) {
         return storageService.deleteDebateRecord(id);
     }
-    /** Generate a short (<15s) video clip summarizing the article. Uses same Gemini API key. */
-    async generateArticleVideo(payload) {
-        const apiKey = await biasAnalyzer.getApiKey();
-        if (!apiKey) {
-            throw new Error('No API key. Add your Gemini API key in the extension popup.');
-        }
-        const context = [payload.excerpt, payload.reasoning].filter(Boolean).join('\n\n');
-        const prompt = await (0,_lib_video_video_prompt__WEBPACK_IMPORTED_MODULE_1__.generateVideoPrompt)(apiKey, payload.title, context);
-        return (0,_lib_video_veo_client__WEBPACK_IMPORTED_MODULE_2__.generateVideo)(apiKey, prompt);
-    }
     /** Fetch author information including bio, articles, and professional details */
     async fetchAuthorInfo(payload) {
         const { authorName } = payload;
@@ -109,7 +95,7 @@ class ApiManager {
             throw new Error('No API key. Add your Gemini API key in the extension popup.');
         }
         try {
-            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__.GoogleGenerativeAI(apiKey);
+            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_2__.GoogleGenerativeAI(apiKey);
             // Try models in order of preference
             const modelNames = ['gemini-2.0-flash', 'gemini-1.5-flash'];
             let rawText = '';
@@ -184,7 +170,7 @@ If you cannot find specific information, use null for that field. Only include v
             throw new Error('No API key. Add your Gemini API key in the extension popup.');
         }
         try {
-            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__.GoogleGenerativeAI(apiKey);
+            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_2__.GoogleGenerativeAI(apiKey);
             // Use a fast model for this query
             const model = genAI.getGenerativeModel({
                 model: 'gemini-2.0-flash',
@@ -235,7 +221,7 @@ Return ONLY valid JSON. If you cannot find specific articles, return an empty ar
             throw new Error('No API key. Add your Gemini API key in the extension popup.');
         }
         try {
-            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_4__.GoogleGenerativeAI(apiKey);
+            const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_2__.GoogleGenerativeAI(apiKey);
             // Try models in order of preference
             const modelNames = ['gemini-2.0-flash', 'gemini-1.5-flash'];
             let rawText = '';
@@ -350,7 +336,8 @@ const PROMPT = `Analyze this article and return metrics people care about. Retur
   "clarity": number (0 = confusing or opaque, 100 = very clear and well-structured),
   "tone_calm_urgent": number (-100 = very calm/measured, 100 = very urgent/alarming),
   "confidence": number (0-100, how confident you are in this analysis),
-  "reasoning": string (concise, punchy summary; max 2 sentences)
+  "reasoning": string (single, comprehensive paragraph; 3-5 sentences),
+  "highlights": string[] (3-5 verbatim quotes or key phrases from the article that support the analysis)
 }
 
 Article text:
@@ -404,6 +391,7 @@ class BiasAnalyzer {
                     tone_calm_urgent: this.clamp(parsed.tone_calm_urgent ?? 0, -100, 100),
                     confidence: this.clamp(parsed.confidence ?? 50, 0, 100),
                     reasoning: String(parsed.reasoning ?? 'Analysis unavailable'),
+                    highlights: Array.isArray(parsed.highlights) ? parsed.highlights.map(String) : [],
                 };
             }
             catch (err) {
@@ -429,6 +417,7 @@ class BiasAnalyzer {
             tone_calm_urgent: 0,
             confidence: 0,
             reasoning: 'AI analysis unavailable. Add GEMINI_API_KEY to enable.',
+            highlights: [],
         };
     }
 }
@@ -666,258 +655,6 @@ class StorageService {
     async setStorageData(data) {
         await chrome.storage.local.set({ [STORAGE_KEY]: data });
     }
-}
-
-
-/***/ },
-
-/***/ "./src/lib/video/veo-client.ts"
-/*!*************************************!*\
-  !*** ./src/lib/video/veo-client.ts ***!
-  \*************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   generateVideo: () => (/* binding */ generateVideo),
-/* harmony export */   getVideoUri: () => (/* binding */ getVideoUri)
-/* harmony export */ });
-/**
- * SeeReal - Veo video generation client (REST)
- * Generates short (<15s) clips via Google Veo 3.1 using the Gemini API.
- * Uses 8-second duration for an infographic/news-cartoon style explainer.
- */
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta';
-const MODEL = 'veo-3.1-generate-preview';
-const POLL_INTERVAL_MS = 8000;
-const MAX_POLL_ATTEMPTS = 30; // ~4 minutes max
-function authHeaders(apiKey) {
-    return {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey,
-    };
-}
-/**
- * Start a long-running video generation job. Returns operation name.
- */
-async function startGeneration(apiKey, prompt) {
-    const url = `${BASE_URL}/models/${MODEL}:predictLongRunning`;
-    const body = {
-        instances: [{ prompt }],
-        parameters: {
-            durationSeconds: 8,
-            aspectRatio: '16:9',
-            resolution: '720p',
-        },
-    };
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: authHeaders(apiKey),
-        body: JSON.stringify(body),
-    });
-    if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(`Veo start failed: ${res.status} ${errText}`);
-    }
-    const data = (await res.json());
-    const name = data?.name;
-    if (!name || typeof name !== 'string') {
-        throw new Error('Veo start: missing operation name in response');
-    }
-    return name;
-}
-/**
- * Poll operation until done. Returns the raw operation response when done.
- */
-async function pollOperation(apiKey, operationName) {
-    const url = operationName.startsWith('http')
-        ? operationName
-        : `${BASE_URL}/${operationName}`;
-    for (let i = 0; i < MAX_POLL_ATTEMPTS; i++) {
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: authHeaders(apiKey),
-        });
-        if (!res.ok) {
-            throw new Error(`Veo poll failed: ${res.status} ${await res.text()}`);
-        }
-        const data = (await res.json());
-        if (data.error?.message) {
-            throw new Error(`Veo error: ${data.error.message}`);
-        }
-        if (data.done) {
-            return data.response ?? {};
-        }
-        await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
-    }
-    throw new Error('Veo generation timed out');
-}
-/**
- * Extract video URI from operation response.
- * Uses a recursive search to find any property that looks like a video URI.
- */
-function getVideoUri(response) {
-    if (!response || typeof response !== 'object')
-        return null;
-    // Debug: Log the full response structure
-    console.log('[SeeReal Veo] Full response:', JSON.stringify(response, null, 2));
-    // Helper: check if a value is a valid video URI
-    const isVideoUri = (val) => {
-        if (typeof val !== 'string')
-            return false;
-        return val.startsWith('https://') && (val.includes('.mp4') ||
-            val.includes('googlevideo.com') ||
-            val.includes('generativelanguage.googleapis.com'));
-    };
-    // Helper: recursive search
-    const findUri = (obj, depth = 0) => {
-        if (depth > 5 || !obj || typeof obj !== 'object')
-            return null;
-        // 1. Check current object for direct URI candidate
-        if ('uri' in obj && isVideoUri(obj.uri)) {
-            return obj.uri;
-        }
-        if ('videoUri' in obj && isVideoUri(obj.videoUri)) {
-            return obj.videoUri;
-        }
-        // 2. Check if this object IS the video object (has uri property but maybe not strictly valid check yet?)
-        // Let's rely on strict check above first.
-        // 3. Iterate keys
-        for (const key of Object.keys(obj)) {
-            const val = obj[key];
-            // If array, search elements
-            if (Array.isArray(val)) {
-                for (const item of val) {
-                    const found = findUri(item, depth + 1);
-                    if (found)
-                        return found;
-                }
-            }
-            // If object, search recursively
-            else if (typeof val === 'object') {
-                const found = findUri(val, depth + 1);
-                if (found)
-                    return found;
-            }
-        }
-        return null;
-    };
-    // Special case: check top-level known paths first for speed/correctness
-    // Path 1: generateVideoResponse.generatedSamples[0].video.uri
-    const gen = response.generateVideoResponse;
-    if (gen?.generatedSamples?.[0]?.video?.uri)
-        return gen.generatedSamples[0].video.uri;
-    if (gen?.generated_samples?.[0]?.video?.uri)
-        return gen.generated_samples[0].video.uri;
-    // Path 2: generatedVideos[0].video.uri
-    const genVideos = response.generatedVideos;
-    if (genVideos?.[0]?.video?.uri)
-        return genVideos[0].video.uri;
-    // Path 3: videos[0].uri
-    const videos = response.videos;
-    if (videos?.[0]?.uri)
-        return videos[0].uri;
-    // Fallback: Deep recursive search
-    console.log('[SeeReal Veo] Standard paths failed. Starting deep recursive search...');
-    return findUri(response);
-}
-/**
- * Download video from URI (with API key for auth) and return as base64.
- */
-async function downloadVideo(apiKey, uri) {
-    const res = await fetch(uri, {
-        headers: { 'x-goog-api-key': apiKey },
-    });
-    if (!res.ok) {
-        throw new Error(`Veo download failed: ${res.status}`);
-    }
-    const blob = await res.blob();
-    const mimeType = blob.type || 'video/mp4';
-    const buf = await blob.arrayBuffer();
-    const bytes = new Uint8Array(buf);
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    const base64 = typeof btoa !== 'undefined' ? btoa(binary) : Buffer.from(bytes).toString('base64');
-    return { base64, mimeType };
-}
-/**
- * Generate an 8-second infographic-style video from a text prompt. Returns base64-encoded video.
- */
-async function generateVideo(apiKey, prompt) {
-    const operationName = await startGeneration(apiKey, prompt);
-    const response = await pollOperation(apiKey, operationName);
-    const uri = getVideoUri(response);
-    if (!uri) {
-        const keys = response && typeof response === 'object' ? Object.keys(response).join(', ') : 'empty';
-        throw new Error(`Veo response missing video URI. Response keys: ${keys || '(none)'}`);
-    }
-    // gs:// URIs require GCS auth; only https is supported for direct fetch
-    if (uri.startsWith('gs://')) {
-        throw new Error('Veo returned a Cloud Storage URI (gs://). This extension only supports direct download URLs. Try using Google AI Studio / Gemini API with a key that returns https URLs, or use Vertex AI with a GCS bucket and download the file separately.');
-    }
-    const { base64, mimeType } = await downloadVideo(apiKey, uri);
-    return { videoBase64: base64, mimeType };
-}
-
-
-/***/ },
-
-/***/ "./src/lib/video/video-prompt.ts"
-/*!***************************************!*\
-  !*** ./src/lib/video/video-prompt.ts ***!
-  \***************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   generateVideoPrompt: () => (/* binding */ generateVideoPrompt)
-/* harmony export */ });
-/* harmony import */ var _google_generative_ai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @google/generative-ai */ "./node_modules/@google/generative-ai/dist/index.mjs");
-/**
- * SeeReal - Video prompt generator
- * Uses Gemini to turn article context into a prompt for a 10-second infographic/news-cartoon explainer.
- */
-
-const PROMPT = `You are writing a video prompt for an AI video generator (e.g. Veo). The video will be 8 seconds long and must work like an INFORMATIONAL INFOGRAPHIC or NEWS CARTOON with NARRATION: it should EXPLAIN what is going on in the article—the context, what is actually happening, and why it is happening—in both visuals and spoken words.
-
-Your output will be used directly as the video model prompt. Output ONLY the prompt—no intro, no "the video shows", no meta-commentary.
-
-Requirements for the prompt you write:
-- Style: animated infographic, editorial cartoon, or news explainer. Think bold shapes, simplified figures, clear symbolism, possibly on-screen text or labels. Not photorealistic—more illustrated, graphic, or cartoon-like.
-- Content: make it obvious WHAT the story is about—who, what, where, why. One clear idea or contrast (e.g. two sides, cause and effect, before/after). The viewer should understand the gist from both visuals and audio.
-- VOCALS / NARRATION (required): Include a clear voiceover or narrator in the prompt. The narration must state: (1) the context of the news story, (2) what is actually happening, and (3) why it is happening. Write the exact words the narrator should say, in quotes, so the model can generate matching speech. Example: "A calm narrator says: 'Local officials announced the new policy today. The change comes after months of debate. Supporters say it will cut costs; critics argue it hurts families.'" Weave the real facts from the article into the spoken script.
-- Describe a single 8-second scene: visuals (infographic/cartoon sequence) plus the narrator's lines. Combine scene description and quoted narration in one prompt.
-
-Article title: {{TITLE}}
-
-Context/summary: {{CONTEXT}}
-
-Video prompt (one paragraph: visual description + quoted narration that explains context, what's happening, and why):`;
-async function generateVideoPrompt(apiKey, title, context) {
-    const truncatedContext = context.slice(0, 2000);
-    const prompt = PROMPT.replace('{{TITLE}}', title).replace('{{CONTEXT}}', truncatedContext);
-    const genAI = new _google_generative_ai__WEBPACK_IMPORTED_MODULE_0__.GoogleGenerativeAI(apiKey);
-    const modelNames = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
-    let lastErr;
-    for (const modelName of modelNames) {
-        try {
-            const model = genAI.getGenerativeModel({ model: modelName });
-            const result = await model.generateContent(prompt);
-            const text = result.response.text()?.trim() ?? '';
-            if (text.length > 0)
-                return text;
-        }
-        catch (err) {
-            lastErr = err;
-            if (err?.message?.includes('API key not valid'))
-                break;
-        }
-    }
-    console.error('[SeeReal] Video prompt generation error:', lastErr);
-    // Fallback: infographic-style prompt with narration from title
-    return `Animated infographic, editorial cartoon style, 8 seconds. A narrator explains the story: context, what is happening, and why. Visuals show key facts. Narration in a calm news-explainer tone: "This story is about ${title.replace(/"/g, '')}. Here is what is going on and why it matters."`;
 }
 
 
@@ -2513,8 +2250,6 @@ async function handleMessage(message) {
         case 'CLEAR_HISTORY':
             await apiManager.clearHistory();
             return { success: true };
-        case 'GENERATE_VIDEO':
-            return apiManager.generateArticleVideo(message.payload);
         case 'FETCH_AUTHOR_INFO':
             return apiManager.fetchAuthorInfo(message.payload);
         case 'FETCH_RELATED_ARTICLES':

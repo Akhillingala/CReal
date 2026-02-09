@@ -18,6 +18,7 @@ export interface BiasResult {
   tone_calm_urgent: number;
   confidence: number;
   reasoning: string;
+  highlights: string[];
 }
 
 const PROMPT = `Analyze this article and return metrics people care about. Return ONLY valid JSON with these exact keys (no markdown, no code blocks):
@@ -30,7 +31,8 @@ const PROMPT = `Analyze this article and return metrics people care about. Retur
   "clarity": number (0 = confusing or opaque, 100 = very clear and well-structured),
   "tone_calm_urgent": number (-100 = very calm/measured, 100 = very urgent/alarming),
   "confidence": number (0-100, how confident you are in this analysis),
-  "reasoning": string (concise, punchy summary; max 2 sentences)
+  "reasoning": string (single, comprehensive paragraph; 3-5 sentences),
+  "highlights": string[] (3-5 verbatim quotes or key phrases from the article that support the analysis)
 }
 
 Article text:
@@ -88,6 +90,7 @@ export class BiasAnalyzer {
           tone_calm_urgent: this.clamp(parsed.tone_calm_urgent ?? 0, -100, 100),
           confidence: this.clamp(parsed.confidence ?? 50, 0, 100),
           reasoning: String(parsed.reasoning ?? 'Analysis unavailable'),
+          highlights: Array.isArray(parsed.highlights) ? parsed.highlights.map(String) : [],
         };
       } catch (err) {
         lastErr = err;
@@ -113,6 +116,7 @@ export class BiasAnalyzer {
       tone_calm_urgent: 0,
       confidence: 0,
       reasoning: 'AI analysis unavailable. Add GEMINI_API_KEY to enable.',
+      highlights: [],
     };
   }
 }
