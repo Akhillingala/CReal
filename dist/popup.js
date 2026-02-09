@@ -37047,7 +37047,7 @@ function Popup() {
             const key = data[STORAGE_KEY] ?? '';
             setApiKey(key);
             // Key is configured if: saved in storage OR from .env.local at build time
-            const fromEnv =  true && "AIzaSyBCDn6_eXlNBBorewvw6jYQGCj4NTa9aDM"?.trim();
+            const fromEnv =  true && "AIzaSyCcrNV84C9A5YuqfFDmB0FI4ydWXY4nI6A"?.trim();
             setHasKey(!!key.trim() || !!fromEnv);
         });
     }, []);
