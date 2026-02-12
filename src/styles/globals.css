@@ -21,12 +21,31 @@
 .seereal-btn-minimize {
   font-family: 'Inter', system-ui, sans-serif;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* Hide off-screen by default, slide in on hover */
+  transform: translateX(calc(100% + 1.5rem));
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+/* Hover area to trigger icon appearance */
+.seereal-overlay:hover .seereal-btn-minimize {
+  transform: translateX(0);
 }
 
 .seereal-btn-minimize:hover {
-  transform: scale(1.22);
+  transform: translateX(0) scale(1.22) !important;
   box-shadow: 0 0 28px rgba(255, 215, 0, 0.45);
+}
+
+/* Ensure icon SVG maintains consistent size across all websites */
+.seereal-btn-minimize svg {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
 }
 
 .seereal-hover-btn {

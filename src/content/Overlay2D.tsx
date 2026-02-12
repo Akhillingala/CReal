@@ -151,310 +151,316 @@ export function Overlay2D() {
 
   return (
     <>
-      <div className="seereal-overlay fixed bottom-6 right-6 z-[2147483647] font-sans">
-        <AnimatePresence mode="wait">
-          {viewMode === 'minimized' && (
-            <motion.button
-              key="minimized"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              onClick={openOverlay}
-              className="seereal-btn-minimize flex h-14 w-14 items-center justify-center rounded-2xl bg-black/95 text-seereal-accent shadow-neon backdrop-blur-glass border border-white/25"
-              title="SeeReal - Article insights"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-              </svg>
-            </motion.button>
-          )}
-
-          {viewMode === 'expanded' && (
-            <motion.div
-              key="expanded"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed left-[7.5vw] top-[7.5vh] z-[2147483647] flex w-[85vw] h-[85vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl"
-            >
-              {/* Header */}
-              <div className="flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]">
-                <div className="flex items-center gap-4">
-                  <img src={chrome.runtime.getURL('logo.svg')} alt="SeeReal" className="h-8 w-auto object-contain" />
-                  <div className="flex gap-1 rounded-lg bg-white/10 p-1">
-                    <button
-                      onClick={() => setTabMode('analysis')}
-                      className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'analysis'
-                        ? 'bg-seereal-accent text-black'
-                        : 'text-white/70 hover:text-white'
-                        }`}
-                    >
-                      Analysis
-                    </button>
-                    <button
-                      onClick={() => setTabMode('history')}
-                      className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'history'
-                        ? 'bg-seereal-accent text-black'
-                        : 'text-white/70 hover:text-white'
-                        }`}
-                    >
-                      History
-                    </button>
-                    <button
-                      onClick={() => setTabMode('debate-cards')}
-                      className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'debate-cards'
-                        ? 'bg-seereal-accent text-black'
-                        : 'text-white/70 hover:text-white'
-                        }`}
-                    >
-                      Debate Cards
-                    </button>
-                  </div>
-                </div>
-
-                {/* Political Leaning Bar in Header */}
-                {analysis.status === 'success' && analysis.bias && (
-                  <div className="flex-1 max-w-md mx-4">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Political Leaning</span>
-                      <span className="text-[10px] font-bold text-seereal-accent uppercase tracking-tight">
-                        {getMetricTerm('left_right', analysis.bias.left_right)}
-                      </span>
-                    </div>
-                    <div className="relative h-2 rounded-full bg-white/10 overflow-hidden">
-                      {analysis.bias.left_right < 0 && (
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${Math.abs(analysis.bias.left_right) / 2}%` }}
-                          transition={{ duration: 0.6, delay: 0.1 }}
-                          className="absolute right-1/2 h-full bg-gradient-to-r from-yellow-600 to-yellow-400"
-                        />
-                      )}
-                      {analysis.bias.left_right > 0 && (
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${analysis.bias.left_right / 2}%` }}
-                          transition={{ duration: 0.6, delay: 0.1 }}
-                          className="absolute left-1/2 h-full bg-gradient-to-r from-yellow-400 to-yellow-600"
-                        />
-                      )}
-                      <div className="absolute left-1/2 top-0 h-full w-0.5 bg-white/40 -ml-px" />
-                    </div>
-                    <div className="flex items-center justify-between mt-1 px-0.5">
-                      <span className="text-[9px] text-white/40 font-medium tracking-tight">Left</span>
-                      <span className="text-[9px] text-white/40 font-medium tracking-tight">Right</span>
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setTabMode('citations')}
-                    className={`seereal-hover-btn rounded-lg px-3 py-2 text-sm transition-colors ${tabMode === 'citations'
-                      ? 'bg-seereal-accent text-black font-medium'
-                      : 'bg-white/15 text-white/90 hover:bg-white/25'
-                      }`}
+      {/* Hover trigger area - extends to make icon appear */}
+      <div className="seereal-overlay fixed bottom-0 right-0 z-[2147483647] font-sans pointer-events-none">
+        <div className="relative h-32 w-32 pointer-events-auto">
+          <div className="absolute bottom-6 right-6">
+            <AnimatePresence mode="wait">
+              {viewMode === 'minimized' && (
+                <motion.button
+                  key="minimized"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  onClick={openOverlay}
+                  className="seereal-btn-minimize flex h-14 w-14 items-center justify-center rounded-2xl bg-black/95 text-seereal-accent shadow-neon backdrop-blur-glass border border-white/25"
+                  title="SeeReal - Article insights"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="shrink-0"
                   >
-                    Citations
-                  </button>
-                  {tabMode === 'analysis' && (
-                    <button
-                      onClick={() => runAnalysis()}
-                      className="seereal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
-                    >
-                      Re-analyze
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setViewMode('minimized')}
-                    className="seereal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-
-              {/* Article context: AI badge, author, source — only when success */}
-              {analysis.status === 'success' && article && (
-                <div className="shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-seereal-accent/20 px-2.5 py-1 text-xs font-medium text-seereal-accent border border-seereal-accent/40">
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    Insights powered by AI
-                  </span>
-                  {(article.author || article.authorImageUrl) && (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (article.author) {
-                          setShowAuthorProfile(true);
-                        }
-                      }}
-                      disabled={!article.author}
-                      className="flex items-center gap-2 min-w-0 rounded-lg px-2 py-1 -ml-2 hover:bg-white/10 transition-colors disabled:cursor-default disabled:hover:bg-transparent group cursor-pointer"
-                      title={article.author ? `View ${article.author}'s profile` : undefined}
-                    >
-                      {article.authorImageUrl ? (
-                        <img
-                          src={article.authorImageUrl}
-                          alt=""
-                          className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
-                        />
-                      ) : article.author ? (
-                        <img
-                          src={`https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`}
-                          alt=""
-                          className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
-                        />
-                      ) : (
-                        <div className="h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20">
-                          <span className="text-white/60 text-xs font-medium">?</span>
-                        </div>
-                      )}
-                      <div className="min-w-0 flex items-center gap-1.5">
-                        <div className="min-w-0">
-                          {article.author && (
-                            <p className="text-xs font-medium text-white/90 truncate group-hover:text-seereal-accent transition-colors">
-                              {article.author}
-                            </p>
-                          )}
-                          {article.source && (
-                            <p className="text-[11px] text-white/50 truncate">{article.source}</p>
-                          )}
-                        </div>
-                        {article.author && (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="shrink-0 text-white/40 group-hover:text-seereal-accent transition-colors"
-                          >
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                          </svg>
-                        )}
-                      </div>
-                    </button>
-                  )}
-                  {article.source && !article.author && !article.authorImageUrl && (
-                    <span className="text-[11px] text-white/50">{article.source}</span>
-                  )}
-                </div>
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                </motion.button>
               )}
 
-              {/* Content area: left list scrolls, radar fixed top-right */}
-              <div className="min-h-0 flex-1 overflow-hidden flex flex-col">
-                {tabMode === 'history' ? (
-                  <HistoryView
-                    onSelectArticle={handleSelectHistoryArticle}
-                    onClose={() => setTabMode('analysis')}
-                  />
-                ) : tabMode === 'debate-cards' ? (
-                  <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
-                    {article ? (
-                      <DebateCardsView article={article as any} />
+              {viewMode === 'expanded' && (
+                <motion.div
+                  key="expanded"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="fixed left-[7.5vw] top-[7.5vh] z-[2147483647] flex w-[85vw] h-[85vh] flex-col rounded-2xl border border-white/15 bg-black/95 shadow-2xl backdrop-blur-xl"
+                >
+                  {/* Header */}
+                  <div className="flex shrink-0 items-center justify-between border-b border-white/20 px-4 py-3 bg-white/[0.03]">
+                    <div className="flex items-center gap-4">
+                      <img src={chrome.runtime.getURL('logo.svg')} alt="SeeReal" className="h-8 w-auto object-contain" />
+                      <div className="flex gap-1 rounded-lg bg-white/10 p-1">
+                        <button
+                          onClick={() => setTabMode('analysis')}
+                          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'analysis'
+                            ? 'bg-seereal-accent text-black'
+                            : 'text-white/70 hover:text-white'
+                            }`}
+                        >
+                          Analysis
+                        </button>
+                        <button
+                          onClick={() => setTabMode('history')}
+                          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'history'
+                            ? 'bg-seereal-accent text-black'
+                            : 'text-white/70 hover:text-white'
+                            }`}
+                        >
+                          History
+                        </button>
+                        <button
+                          onClick={() => setTabMode('debate-cards')}
+                          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${tabMode === 'debate-cards'
+                            ? 'bg-seereal-accent text-black'
+                            : 'text-white/70 hover:text-white'
+                            }`}
+                        >
+                          Debate Cards
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Political Leaning Bar in Header */}
+                    {analysis.status === 'success' && analysis.bias && (
+                      <div className="flex-1 max-w-md mx-4">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Political Leaning</span>
+                          <span className="text-[10px] font-bold text-seereal-accent uppercase tracking-tight">
+                            {getMetricTerm('left_right', analysis.bias.left_right)}
+                          </span>
+                        </div>
+                        <div className="relative h-2 rounded-full bg-white/10 overflow-hidden">
+                          {analysis.bias.left_right < 0 && (
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${Math.abs(analysis.bias.left_right) / 2}%` }}
+                              transition={{ duration: 0.6, delay: 0.1 }}
+                              className="absolute right-1/2 h-full bg-gradient-to-r from-yellow-600 to-yellow-400"
+                            />
+                          )}
+                          {analysis.bias.left_right > 0 && (
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${analysis.bias.left_right / 2}%` }}
+                              transition={{ duration: 0.6, delay: 0.1 }}
+                              className="absolute left-1/2 h-full bg-gradient-to-r from-yellow-400 to-yellow-600"
+                            />
+                          )}
+                          <div className="absolute left-1/2 top-0 h-full w-0.5 bg-white/40 -ml-px" />
+                        </div>
+                        <div className="flex items-center justify-between mt-1 px-0.5">
+                          <span className="text-[9px] text-white/40 font-medium tracking-tight">Left</span>
+                          <span className="text-[9px] text-white/40 font-medium tracking-tight">Right</span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setTabMode('citations')}
+                        className={`seereal-hover-btn rounded-lg px-3 py-2 text-sm transition-colors ${tabMode === 'citations'
+                          ? 'bg-seereal-accent text-black font-medium'
+                          : 'bg-white/15 text-white/90 hover:bg-white/25'
+                          }`}
+                      >
+                        Citations
+                      </button>
+                      {tabMode === 'analysis' && (
+                        <button
+                          onClick={() => runAnalysis()}
+                          className="seereal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
+                        >
+                          Re-analyze
+                        </button>
+                      )}
+                      <button
+                        onClick={() => setViewMode('minimized')}
+                        className="seereal-hover-btn rounded-lg bg-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/25"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Article context: AI badge, author, source — only when success */}
+                  {analysis.status === 'success' && article && (
+                    <div className="shrink-0 border-b border-white/10 px-4 py-2.5 flex flex-wrap items-center gap-3 bg-white/[0.02]">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-seereal-accent/20 px-2.5 py-1 text-xs font-medium text-seereal-accent border border-seereal-accent/40">
+                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        Insights powered by AI
+                      </span>
+                      {(article.author || article.authorImageUrl) && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (article.author) {
+                              setShowAuthorProfile(true);
+                            }
+                          }}
+                          disabled={!article.author}
+                          className="flex items-center gap-2 min-w-0 rounded-lg px-2 py-1 -ml-2 hover:bg-white/10 transition-colors disabled:cursor-default disabled:hover:bg-transparent group cursor-pointer"
+                          title={article.author ? `View ${article.author}'s profile` : undefined}
+                        >
+                          {article.authorImageUrl ? (
+                            <img
+                              src={article.authorImageUrl}
+                              alt=""
+                              className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
+                            />
+                          ) : article.author ? (
+                            <img
+                              src={`https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&size=64&background=0D9488&color=fff&bold=true`}
+                              alt=""
+                              className="h-8 w-8 shrink-0 rounded-full object-cover border border-white/20 bg-white/10"
+                            />
+                          ) : (
+                            <div className="h-8 w-8 shrink-0 rounded-full bg-white/15 flex items-center justify-center border border-white/20">
+                              <span className="text-white/60 text-xs font-medium">?</span>
+                            </div>
+                          )}
+                          <div className="min-w-0 flex items-center gap-1.5">
+                            <div className="min-w-0">
+                              {article.author && (
+                                <p className="text-xs font-medium text-white/90 truncate group-hover:text-seereal-accent transition-colors">
+                                  {article.author}
+                                </p>
+                              )}
+                              {article.source && (
+                                <p className="text-[11px] text-white/50 truncate">{article.source}</p>
+                              )}
+                            </div>
+                            {article.author && (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="shrink-0 text-white/40 group-hover:text-seereal-accent transition-colors"
+                              >
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                              </svg>
+                            )}
+                          </div>
+                        </button>
+                      )}
+                      {article.source && !article.author && !article.authorImageUrl && (
+                        <span className="text-[11px] text-white/50">{article.source}</span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Content area: left list scrolls, radar fixed top-right */}
+                  <div className="min-h-0 flex-1 overflow-hidden flex flex-col">
+                    {tabMode === 'history' ? (
+                      <HistoryView
+                        onSelectArticle={handleSelectHistoryArticle}
+                        onClose={() => setTabMode('analysis')}
+                      />
+                    ) : tabMode === 'debate-cards' ? (
+                      <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
+                        {article ? (
+                          <DebateCardsView article={article as any} />
+                        ) : (
+                          <div className="flex h-full flex-col items-center justify-center text-center">
+                            <p className="text-white/60">No article detected to generate cards.</p>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                      <div className="flex h-full flex-col items-center justify-center text-center">
-                        <p className="text-white/60">No article detected to generate cards.</p>
+                      <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
+                        {tabMode === 'citations' ? (
+                          article ? (
+                            <CitationsView article={article} />
+                          ) : (
+                            <div className="flex h-full flex-col items-center justify-center text-center">
+                              <p className="text-white/60">Analyze an article to generate citations.</p>
+                            </div>
+                          )
+                        ) : (
+                          <>
+                            {analysis.status === 'idle' && (
+                              <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center">
+                                <p className="mb-4 text-base text-white/90">
+                                  {article ? 'Click below to analyze this article' : 'No article detected on this page.'}
+                                </p>
+                                <button
+                                  onClick={runAnalysis}
+                                  disabled={!article}
+                                  className="seereal-hover-btn rounded-xl bg-yellow-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-yellow-500 shadow-lg"
+                                >
+                                  Analyze article
+                                </button>
+                              </div>
+                            )}
+
+                            {analysis.status === 'loading' && (
+                              <div className="flex flex-col items-center justify-center gap-4 py-10">
+                                <div className="h-12 w-12 animate-spin rounded-full border-4 border-seereal-accent/30 border-t-seereal-accent" />
+                                <p className="text-base text-white/80">Analyzing article...</p>
+                                <div className="grid w-full max-w-sm grid-cols-3 gap-2">
+                                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                                    <div key={i} className="h-16 rounded-lg bg-white/10 animate-pulse" />
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {analysis.status === 'error' && (
+                              <div className="rounded-xl border-2 border-seereal-danger/50 bg-seereal-danger/10 p-4 max-w-lg">
+                                <p className="text-base font-medium text-seereal-danger">{analysis.error}</p>
+                                <p className="mt-1.5 text-xs text-white/70">Add your Gemini API key in the extension popup.</p>
+                                <button
+                                  onClick={runAnalysis}
+                                  className="seereal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35"
+                                >
+                                  Retry
+                                </button>
+                              </div>
+                            )}
+
+                            {analysis.status === 'success' && analysis.bias && (
+                              <ArticleInsightsDisplay
+                                bias={analysis.bias}
+                                relatedArticles={relatedArticles}
+                                loadingRelated={loadingRelated}
+                                showPageHighlights={showPageHighlights}
+                                onToggleHighlights={setShowPageHighlights}
+                                className="min-h-0 flex-1 flex"
+                              />
+                            )}
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
-                ) : (
-                  <div className="min-h-0 flex-1 overflow-hidden flex flex-col p-3 md:p-4">
-                    {tabMode === 'citations' ? (
-                      article ? (
-                        <CitationsView article={article} />
-                      ) : (
-                        <div className="flex h-full flex-col items-center justify-center text-center">
-                          <p className="text-white/60">Analyze an article to generate citations.</p>
-                        </div>
-                      )
-                    ) : (
-                      <>
-                        {analysis.status === 'idle' && (
-                          <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center">
-                            <p className="mb-4 text-base text-white/90">
-                              {article ? 'Click below to analyze this article' : 'No article detected on this page.'}
-                            </p>
-                            <button
-                              onClick={runAnalysis}
-                              disabled={!article}
-                              className="seereal-hover-btn rounded-xl bg-yellow-600 px-8 py-3 text-base font-semibold text-white disabled:opacity-50 hover:bg-yellow-500 shadow-lg"
-                            >
-                              Analyze article
-                            </button>
-                          </div>
-                        )}
 
-                        {analysis.status === 'loading' && (
-                          <div className="flex flex-col items-center justify-center gap-4 py-10">
-                            <div className="h-12 w-12 animate-spin rounded-full border-4 border-seereal-accent/30 border-t-seereal-accent" />
-                            <p className="text-base text-white/80">Analyzing article...</p>
-                            <div className="grid w-full max-w-sm grid-cols-3 gap-2">
-                              {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div key={i} className="h-16 rounded-lg bg-white/10 animate-pulse" />
-                              ))}
-                            </div>
-                          </div>
-                        )}
 
-                        {analysis.status === 'error' && (
-                          <div className="rounded-xl border-2 border-seereal-danger/50 bg-seereal-danger/10 p-4 max-w-lg">
-                            <p className="text-base font-medium text-seereal-danger">{analysis.error}</p>
-                            <p className="mt-1.5 text-xs text-white/70">Add your Gemini API key in the extension popup.</p>
-                            <button
-                              onClick={runAnalysis}
-                              className="seereal-hover-btn mt-3 rounded-lg bg-white/25 px-4 py-2 text-sm font-medium text-white hover:bg-white/35"
-                            >
-                              Retry
-                            </button>
-                          </div>
-                        )}
-
-                        {analysis.status === 'success' && analysis.bias && (
-                          <ArticleInsightsDisplay
-                            bias={analysis.bias}
-                            relatedArticles={relatedArticles}
-                            loadingRelated={loadingRelated}
-                            showPageHighlights={showPageHighlights}
-                            onToggleHighlights={setShowPageHighlights}
-                            className="min-h-0 flex-1 flex"
-                          />
-                        )}
-                      </>
-                    )}
+                  <div className="shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]">
+                    <p className="text-xs text-white/50">Article insights · SeeReal</p>
                   </div>
-                )}
-              </div>
-
-
-              <div className="shrink-0 border-t border-white/20 px-4 py-3 flex items-center justify-between bg-white/[0.03]">
-                <p className="text-xs text-white/50">Article insights · SeeReal</p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
 
       {/* Author Profile Modal */}
